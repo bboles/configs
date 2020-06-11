@@ -1,0 +1,220 @@
+set sort=threads
+set sort_browser=reverse-date           # showing mbox list default to newest first
+set sort_aux=last-date-received         # showing threads with youngest message last
+
+set imap_keepalive='180'
+set imap_user = `grep '^machine default' ~/.netrc | awk '{print $4}'`
+set imap_pass = `grep '^machine default' ~/.netrc | awk '{print $6}'`
+set spoolfile = imaps://outlook.office365.com:993/INBOX
+set folder = imaps://outlook.office365.com:993
+# set record = "imaps://outlook.office365.com:993/Sent Items"
+set postponed = imaps://outlook.office365.com:993/Drafts
+set trash = "imaps://outlook.office365.com:993/Deleted Items"
+set smtp_url = smtp://$imap_user@smtp.office365.com:587/
+set smtp_pass = $imap_pass
+set ssl_force_tls = yes
+set smtp_authenticators = "login"
+
+# workaround for deleting a message on imap
+#folder-hook . 'macro pager d "<save-message>=Deleted<quote-char> Items \r" "Move message to trash"'
+#folder-hook . 'macro index d "<save-message>=Deleted<quote-char> Items \r" "Move message to trash"'
+set confirmappend = no
+
+set editor="vim +':set textwidth=100' +':set wrap' +\`awk '/^$/ {print i+2; exit} {i++}' %s\` '+startinsert!' %s"
+set from='Brandon Boles <bboles@ntent.com>'
+set signature=~/.mutt/signature.txt
+set sig_on_top=yes
+set delete=yes
+set edit_headers=yes
+set index_format="%3C %Z %(%b%d %I:%M%p)  %-25.25L %s"
+# affects how often mutt checks for new mail on imap
+# https://gitlab.com/muttmua/mutt/wikis/MuttFaq/Folder
+set timeout=30
+
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/bodies"
+
+set pager="builtin"                     #Use the built-in pager, not `less'
+
+set pager_context=9                     #Paging down a message leaves 5 lines of overlap, so you don't get lost.
+
+ignore *                                # First, ignore all headers.
+                                        # In the next line we specify which ones we'd like to see.
+
+unignore From To Reply-To Subject X-Mailer Cc Date      #Show these headers (ignoring all, then selecting some is easy)
+
+hdr_order From: Date: To: Cc: Subject   #Order in which the headers are presented.
+
+set pager_index_lines=9                 #Show 2 messages on either side of the message I'm reading.
+alternative_order text/enriched text/plain text/html    #In which order to show the body parts (I leave HTML for last)
+# alternative_order text/plain text/enriched text/html    #In which order to show the body parts (I leave HTML for last)
+
+
+bind pager k previous-line
+bind pager j next-line
+bind pager p previous-unread
+bind pager n next-unread
+bind pager \cf next-page
+bind pager \cb previous-page
+bind index \cf next-page
+bind index \cb previous-page
+bind index G last-entry
+
+
+color indicator brightyellow cyan
+color normal green      default
+#color index brightblue default ~p      # To me (personal)
+color index cyan  default ~N      # New
+color tree brightmagenta  default
+color body yellow       default  "[;:]-[)/(|]"  # colorise smileys
+color body yellow       default  "[;:][)/(|]"
+
+# get character encoding to work right
+# http://plasmasturm.org/log/171/
+set charset='//TRANSLIT'
+
+set attribution="On %d, %n wrote:"      # indent text preface
+set forward_format="Fwd: %s"            #
+set indent_str="> "                     #
+
+
+set implicit_autoview                   # handle html
+auto_view text/html  application/x-pgp-message
+set mailcap_path="~/.mailcap"
+
+
+macro index "\cr" "c=INBOX\n"
+macro index "\ct" "c=Sent<quote-char> Items\n"
+#macro index "\cy" "c=INBOX/JIRA\n"
+#macro index "\co" "c=INBOX/Opsview\n"
+#macro index "\cu" "c=INBOX/hosting\n"
+#macro index "\cw" "c=INBOX/wheres\n"
+macro index "\cv" |urlview\n 'call urlview to extract URLs out of a message'
+#macro index "\ew" "<mail>Hosting Ops Team <HostingOpsTeam@homeaway.com>\nWhere's Brandon Boles\n"
+#macro index "\ct" "s=INBOX.Spam\n"
+#macro index "\ct" "s=imaps://imap.gmail.com/[Gmail]/Spam\n"
+#macro index \ed "<enter-command>unset wai_key\n<save-message>=inbox\n" "Untags a given message as SPAM"
+#macro index \et "<pipe-entry>spamassassin -t\n<enter-command>set wait_key\n" "Tests a given message to see if it is SPAM"
+
+set query_command="~/.mutt/bin/ldapquery.sh '%s'"
+
+# abook
+#set query_command="abook --mutt-query '%s'"
+#macro pager A |'abook --add-email'\n
+
+# source "~/.mutt/aliases.txt"
+# set alias_file='~/.mutt/aliases.txt'
+
+set print_command="muttprint -p usausl2q -P letter -2 -z 10 -F Helvetica"
+# set display_filter="tr '\\221\\222\\223\\224\\226' '\\047\\047\\042\\042\\055'" # sanitize windows character codes
+# set display_filter="~/.mutt/bin/aliases.sh"
+# set display_filter="~/.mutt/bin/alias-auto-add_0.0.2_osx_amd64 ~/.mutt/aliases.txt""
+# set display_filter="abook --add-email-quiet; abook --convert --informat abook --infile ~/.abook/addressbook --outformat mutt --outfile ~/.mutt/aliases.txt"
+# set display_filter="~/.mutt/bin/addabook.sh"
+#set display_filter="~/.mutt/bin/emailgrabber.py"
+
+# # sidebar
+# set imap_check_subscribed
+# 
+# set sidebar_visible=yes
+# macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+# macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+# 
+# # Ctrl-n, Ctrl-p to select next, previous folder.
+# # Ctrl-o to open selected folder.
+# bind index,pager \CP sidebar-prev
+# bind index,pager \CN sidebar-next
+# bind index,pager \CO sidebar-open
+# 
+# # --------------------------------------------------------------------------
+# # VARIABLES - shown with their default values
+# # --------------------------------------------------------------------------
+# # Should the Sidebar be shown?
+# set sidebar_visible = yes
+# # How wide should the Sidebar be in screen columns?
+# set imap_check_subscribed
+# 
+# # Note: Some characters, e.g. Chinese, take up two columns each.
+# set sidebar_width = 30
+# # Should the mailbox paths be abbreviated?
+# set sidebar_short_path = yes
+# # Number of top-level mailbox path subdirectories to truncate for display
+# #set sidebar_component_depth = 0
+# # When abbreviating mailbox path names, use any of these characters as path
+# # separators.  Only the part after the last separators will be shown.
+# # For file folders '/' is good.  For IMAP folders, often '.' is useful.
+# set sidebar_delim_chars = '/.'
+# # If the mailbox path is abbreviated, should it be indented?
+# set sidebar_folder_indent 
+# # Indent mailbox paths with this string.
+# set sidebar_indent_string = '  '
+# # Make the Sidebar only display mailboxes that contain new, or flagged,
+# # mail.
+# set sidebar_new_mail_only = no
+# # Any mailboxes that are whitelisted will always be visible, even if the
+# # sidebar_new_mail_only option is enabled.
+# #sidebar_whitelist '/home/user/mailbox1'
+# #sidebar_whitelist '/home/user/mailbox2'
+# # When searching for mailboxes containing new mail, should the search wrap
+# # around when it reaches the end of the list?
+# set sidebar_next_new_wrap = no
+# # Show the Sidebar on the right-hand side of the screen
+# set sidebar_on_right = no
+# # The character to use as the divider between the Sidebar and the other NeoMutt
+# # panels.
+# set sidebar_divider_char = '|'
+# # Enable extended buffy mode to calculate total, new, and flagged
+# # message counts for each mailbox.
+# set mail_check_stats
+# # Display the Sidebar mailboxes using this format string.
+# set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
+# # Sort the mailboxes in the Sidebar using this method:
+# #       count    - total number of messages
+# #       flagged  - number of flagged messages
+# #       new      - number of new messages
+# #       path     - mailbox path
+# #       unsorted - do not sort the mailboxes
+# set sidebar_sort_method = 'unsorted'
+# # --------------------------------------------------------------------------
+# # FUNCTIONS - shown with an example mapping
+# # --------------------------------------------------------------------------
+# # Move the highlight to the previous mailbox
+# bind index,pager \Cp sidebar-prev
+# # Move the highlight to the next mailbox
+# bind index,pager \Cn sidebar-next
+# # Open the highlighted mailbox
+# bind index,pager \Co sidebar-open
+# # Move the highlight to the previous page
+# # This is useful if you have a LOT of mailboxes.
+# bind index,pager <F3> sidebar-page-up
+# # Move the highlight to the next page
+# # This is useful if you have a LOT of mailboxes.
+# bind index,pager <F4> sidebar-page-down
+# # Move the highlight to the previous mailbox containing new, or flagged,
+# # mail.
+# bind index,pager <F5> sidebar-prev-new
+# # Move the highlight to the next mailbox containing new, or flagged, mail.
+# bind index,pager <F6> sidebar-next-new
+# # Toggle the visibility of the Sidebar.
+# bind index,pager B sidebar-toggle-visible
+# # --------------------------------------------------------------------------
+# # COLORS - some unpleasant examples are given
+# # --------------------------------------------------------------------------
+# # Note: All color operations are of the form:
+# #       color OBJECT FOREGROUND BACKGROUND
+# # Color of the current, open, mailbox
+# # Note: This is a general NeoMutt option which colors all selected items.
+# #color indicator cyan black
+# color indicator brightyellow cyan
+# # Color of the highlighted, but not open, mailbox.
+# color sidebar_highlight black blue
+# # Color of the divider separating the Sidebar from NeoMutt panels
+# color sidebar_divider green black
+# # Color to give mailboxes containing flagged mail
+# color sidebar_flagged red black
+# # Color to give mailboxes containing new mail
+# color sidebar_new green black
+# # Color to give mailboxes containing no new/flagged mail, etc.
+# color sidebar_ordinary white default
+# # --------------------------------------------------------------------------
+# # vim: syntax=neomuttrc

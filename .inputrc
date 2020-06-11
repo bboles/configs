@@ -1,0 +1,68 @@
+# turn on history expansion when space is entered
+$if Bash
+  Space: magic-space
+$endif
+
+# insert-option macro:
+# Ctrl+P: previous line
+# Ctrl+A: start of line
+# Meta+F: forward a word, past the command
+# ␣: insert a space
+"\M-o": "\C-p\C-a\M-f "
+
+# When listing possible file completions, put / after directory names and * after programs
+set visible-stats on
+
+# List the possible completions when Tab is pressed
+set show-all-if-ambiguous on
+
+# The length in characters of the common prefix of a list of possible completions
+# that is displayed without modification.
+set completion-prefix-display-length 2
+
+# Make Meta+S cycle through the list
+# "\M-s": menu-complete
+# Control-j: menu-complete
+# Control-k: menu-complete-backward
+Meta-j: menu-complete
+Meta-k: menu-complete-backward
+
+set editing-mode vi
+
+$if mode=vi
+    set keymap vi-insert
+    "\C-l": clear-screen
+    "\C-p": history-search-backward
+    "\C-n": history-search-forward
+    # alt dot cycles through last argument
+    "\e.":yank-last-arg
+
+    set keymap vi-command
+    "D":kill-line
+    "dw": kill-word
+    "dd": kill-whole-line
+    "db": backward-kill-word
+    "cc": "ddi"
+    "cw": "dwi"
+    "cb": "dbi"
+    "diw": "lbdw"
+    "yiw": "lbyw"
+    "ciw": "lbcw"
+    "diW": "lBdW"
+    "yiW": "lByW"
+    "ciW": "lBcW"
+    "gg": beginning-of-history
+    "G": end-of-history
+$endif
+
+# Color files by types
+set colored-stats On
+# Mark symlinked directories
+set mark-symlinked-directories On
+# Color the common prefix
+set colored-completion-prefix On
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+
+# include the default inputrc since it is ignored if ~/.inputrc is present
+$include /etc/inputrc
