@@ -176,11 +176,11 @@ export LS_COLORS='rs=0:di=01;35:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 # this will make nested tmux session panes display properly on a remote host
 # export LANG='en_US'
 
-alias l='ls --color=auto -al'
-alias lh='ls --color=auto -alh'
-alias ls='ls --color=auto'
-alias ll='ls --color=auto -l'
-alias lt='ls --color=auto -altr'
+alias l='ls -G -al'
+alias lh='ls -G -alh'
+alias ls='ls -G'
+alias ll='ls -G -l'
+alias lt='ls -G -altr'
 alias grep='grep --color=auto'
 alias igrep='grep --color=auto -i'
 alias ifind='find . -iname'
@@ -227,8 +227,8 @@ alias .....='cd ../../../..'
 complete -F _complete_alias k
 complete -cf sudo
 complete -o default -o nospace -F _ssh gos
-complete -C /home/linuxbrew/.linuxbrew/bin/aws_completer aws
-[[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
+# complete -C /home/linuxbrew/.linuxbrew/bin/aws_completer aws
+# [[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
 
 current-branch () {
   git rev-parse --symbolic-full-name --abbrev-ref HEAD
@@ -289,10 +289,10 @@ fi
 # if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
-. /home/linuxbrew/.linuxbrew/opt/asdf/asdf.sh
-. /home/linuxbrew/.linuxbrew/opt/asdf/etc/bash_completion.d/asdf.bash
-. ~/tools/stern_completion.sh
+# . /home/linuxbrew/.linuxbrew/opt/asdf/asdf.sh
+# . /home/linuxbrew/.linuxbrew/opt/asdf/etc/bash_completion.d/asdf.bash
+# . ~/tools/stern_completion.sh
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/starship init bash)"
+eval "$(/usr/local/bin/starship init bash)"
 
-source /home/bboles/.config/broot/launcher/bash/br
+# source /home/bboles/.config/broot/launcher/bash/br
