@@ -9,7 +9,8 @@ fi
 unset PROMPT_COMMAND
 
 # User specific aliases and functions
-PATH=~/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/local/opt/curl/bin:$PATH:/sbin:/usr/sbin:/usr/local/opt/go/libexec/bin
+#PATH=~/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/local/opt/curl/bin:$PATH:/sbin:/usr/sbin:/usr/local/opt/go/libexec/bin
+PATH=~/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin
 
 export FZF_DEFAULT_COMMAND='find .'
 
