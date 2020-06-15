@@ -12,6 +12,8 @@ unset PROMPT_COMMAND
 #PATH=~/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/local/opt/curl/bin:$PATH:/sbin:/usr/sbin:/usr/local/opt/go/libexec/bin
 PATH=~/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin
 
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . /usr/local/etc/profile.d/bash_completion.sh
+
 export FZF_DEFAULT_COMMAND='find .'
 
 fe() {
