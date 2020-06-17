@@ -57,7 +57,7 @@ set tabstop=4 shiftwidth=4 expandtab
 set guicursor+=a:blinkon0
 
 " preferred font
-set guifont=Edlo\ 10
+set guifont=Edlo:h13
 
 " show tab numbers
 set guitablabel=%N:%M%t 
