@@ -296,6 +296,13 @@ fi
 # . /home/linuxbrew/.linuxbrew/opt/asdf/etc/bash_completion.d/asdf.bash
 # . ~/tools/stern_completion.sh
 
+# ruby things:
+#
+# This keeps openssl updated with brew vs. not being updated otherwise
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 eval "$(/usr/local/bin/starship init bash)"
 
 # source /home/bboles/.config/broot/launcher/bash/br
