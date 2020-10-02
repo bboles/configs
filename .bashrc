@@ -285,9 +285,9 @@ if [[ $- =~ "i" ]]; then
     export GROFF_NO_SGR=1                           # needed for Konsole
 fi
 
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 # 
 # if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 # eval "$(pyenv init -)"
