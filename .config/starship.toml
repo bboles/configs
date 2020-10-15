@@ -23,3 +23,6 @@ min_time            = 5
 
 [kubernetes]
 disabled            = false
+
+[git_status]
+disabled            = true
