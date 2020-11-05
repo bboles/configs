@@ -20,32 +20,32 @@ let mapleader = ","
 " 3s timeout for leader
 set timeoutlen=3000
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_docker_checkers = ['hadolint']
-let g:syntastic_markdown_checkers = ['proselint']
-let g:syntastic_puppet_checkers = ['puppet-lint']
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_sh_checkers = ['shellcheck']
-" turn off vint because it crashes
-" let g:syntastic_vim_checkers = ['vint']
-let g:syntastic_yaml_checkers = ['yamllint']
-
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_docker_checkers = ['hadolint']
+" let g:syntastic_markdown_checkers = ['proselint']
+" let g:syntastic_puppet_checkers = ['puppet-lint']
+" let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_sh_checkers = ['shellcheck']
+" " turn off vint because it crashes
+" " let g:syntastic_vim_checkers = ['vint']
+" let g:syntastic_yaml_checkers = ['yamllint']
+" 
+" " let b:togglestc=1
 " let b:togglestc=1
-let b:togglestc=1
-function ToggleSTC()
-  if togglestc
-      :SyntasticCheck
-      let b:togglestc=0
-  else
-      :SyntasticReset
-      let b:togglestc=1
-  endif
-endfunction
-
-nnoremap <F4> :call ToggleSTC()<CR>
+" function ToggleSTC()
+"   if togglestc
+"       :SyntasticCheck
+"       let b:togglestc=0
+"   else
+"       :SyntasticReset
+"       let b:togglestc=1
+"   endif
+" endfunction
+" 
+" nnoremap <F4> :call ToggleSTC()<CR>
 
 " fix shift-insert for gvim
 " inoremap <S-Insert> <C-R>*
@@ -137,7 +137,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 call plug#end()
 
 " fzf things
