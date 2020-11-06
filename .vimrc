@@ -12,7 +12,7 @@ set statusline=%F%m%r%h%w\ %=\ %{FugitiveStatusline()}\ FMT=%{&ff}\ TYPE=%Y\ ASC
 " set statusline+=%p%%
 "set statusline+=LEN=%L
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set laststatus=2
 
