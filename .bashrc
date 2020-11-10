@@ -165,6 +165,8 @@ updatehostsandaliases
 #   source "$HOME/.bash-git-prompt/gitprompt.sh"
 # fi
 
+export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgrep.txt
+
 export WORKON_HOME=~/src/python/.virtualenvs
 export PROJECT_HOME=~/src/python/dev
 export VIRTUALENV_PYTHON=/usr/local/opt/python/libexec/bin/python
