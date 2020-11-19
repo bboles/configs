@@ -287,6 +287,11 @@ if [[ $- =~ "i" ]]; then
     export GROFF_NO_SGR=1                           # needed for Konsole
 fi
 
+# Turn on shell completion for gcloud commands.
+export CLOUDSDK_PYTHON="$(brew --prefix)/opt/python@3.8/libexec/bin/python"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+
 # This is so git knows about our gpg key.
 export GPG_TTY=$(tty)
 
