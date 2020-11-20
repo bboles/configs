@@ -26,3 +26,6 @@ disabled            = false
 
 [git_status]
 disabled            = true
+
+[gcloud]
+format              = 'on [$symbol$project(\($region\))]($style)'
