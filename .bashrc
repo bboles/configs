@@ -10,7 +10,7 @@ unset PROMPT_COMMAND
 
 # User specific aliases and functions
 #PATH=~/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/local/opt/curl/bin:$PATH:/sbin:/usr/sbin:/usr/local/opt/go/libexec/bin
-PATH=~/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin
+PATH=~/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin:/usr/local/opt/mysql-client/bin
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . /usr/local/etc/profile.d/bash_completion.sh
 
