@@ -137,6 +137,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'sheerun/vim-polyglot'
+Plug 'jez/vim-superman'
 " Plug 'vim-syntastic/syntastic'
 call plug#end()
 
