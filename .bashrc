@@ -15,6 +15,7 @@ PATH=~/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin:/usr/local/opt/mysql-client/bin
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . /usr/local/etc/profile.d/bash_completion.sh
 
 export FZF_DEFAULT_COMMAND='find .'
+export FZF_HISTORY_FZF_OPTS='--pointer=-> --tiebreak=begin'
 
 fe() {
   local files
