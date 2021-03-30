@@ -233,7 +233,6 @@ alias .....='cd ../../../..'
 complete -F _complete_alias k
 complete -cf sudo
 complete -o default -o nospace -F _ssh gos
-complete -o default -o nospace -F _man vman
 # complete -C /home/linuxbrew/.linuxbrew/bin/aws_completer aws
 # [[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
 
