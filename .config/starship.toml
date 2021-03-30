@@ -6,8 +6,8 @@ add_newline         = false
 scan_timeout        = 10
 
 [username]
-disabled            = false
-show_always         = true
+disabled            = true
+show_always         = false
 
 [time]
 disabled            = false
@@ -28,4 +28,4 @@ disabled            = false
 disabled            = true
 
 [gcloud]
-format              = 'on [$symbol$project(\($region\))]($style)'
+format              = '[$symbol$project(\($region\))]($style)'
