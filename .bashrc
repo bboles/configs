@@ -241,6 +241,11 @@ current-branch () {
   git rev-parse --symbolic-full-name --abbrev-ref HEAD
 }
 
+gco () {
+  git checkout -b $1
+  git push --set-upstream origin $1
+}
+
 rpmcl () {
   rpm --changelog -q $1 | more
 }
