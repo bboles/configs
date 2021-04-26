@@ -29,3 +29,6 @@ disabled            = true
 
 [gcloud]
 format              = '[$symbol$project(\($region\))]($style)'
+
+[nodejs]
+disabled            = true
