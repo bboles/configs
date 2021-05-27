@@ -138,6 +138,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'sheerun/vim-polyglot'
 Plug 'jez/vim-superman'
+Plug 'jpalardy/vim-slime'
 " Plug 'vim-syntastic/syntastic'
 call plug#end()
 
@@ -149,3 +150,9 @@ nmap <Leader>l :BLines<CR>
 nmap <Leader>L :Lines<CR>
 nmap <Leader>' :Marks<CR>
 nmap <Leader>H :Helptags!<CR>
+
+" slime things
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = "ipython"
+let g:slime_vimterminal_config = {"term_finish": "close"}
+let g:slime_python_ipython = 1
