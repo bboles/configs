@@ -336,3 +336,7 @@ source /Users/bboles/.appcenter/completion.sh
 
 # completion for gh command
 eval "$(gh completion -s bash)"
+
+# completion for kubectl
+source <(kubectl completion bash)
+complete -F __start_kubectl k
