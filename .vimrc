@@ -141,6 +141,8 @@ Plug 'jez/vim-superman'
 Plug 'jpalardy/vim-slime'
 " Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" devicons should always be loaded last
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " fzf things
