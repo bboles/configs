@@ -140,6 +140,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jez/vim-superman'
 Plug 'jpalardy/vim-slime'
 " Plug 'vim-syntastic/syntastic'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " fzf things
@@ -156,3 +157,6 @@ let g:slime_target = "vimterminal"
 let g:slime_vimterminal_cmd = "ipython"
 let g:slime_vimterminal_config = {"term_finish": "close"}
 let g:slime_python_ipython = 1
+
+" coc things
+nmap <Leader>e :CocCommand explorer<CR>
