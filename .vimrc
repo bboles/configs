@@ -154,6 +154,10 @@ nmap <Leader>l :BLines<CR>
 nmap <Leader>L :Lines<CR>
 nmap <Leader>' :Marks<CR>
 nmap <Leader>H :Helptags!<CR>
+nmap <Leader>hh :History<CR>
+nmap <Leader>h: :History:<CR>
+nmap <Leader>h/ :History/<CR>
+
 
 " slime things
 let g:slime_target = "vimterminal"
