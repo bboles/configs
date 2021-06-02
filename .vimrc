@@ -1,4 +1,5 @@
 colorscheme torte
+hi Pmenu guibg=NavyBlue
 syntax on
 set statusline=%F%m%r%h%w\ %=\ %{FugitiveStatusline()}\ FMT=%{&ff}\ TYPE=%Y\ ASCII=\%03.3b\ HEX=\%02.2B\ L:\%05l/%L\ C:\%03v\ %p%%\ LEN=%L
 " set statusline=%F%m%r%h%w
