@@ -275,7 +275,7 @@ rgrep () {
 
 # only if we are interactive...
 if [[ $- =~ "i" ]]; then
-    [[ -x /usr/bin/fortune ]] && fortune 
+  ( [[ -x /usr/bin/fortune ]] || [[ -x /usr/local/bin/fortune ]] ) && fortune 
 
     # put some color in our man pages
     export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
