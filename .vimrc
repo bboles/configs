@@ -152,7 +152,8 @@ call plug#end()
 " fzf things
 let $FZF_DEFAULT_COMMAND='find .'
 nmap <Leader>F :Files<CR>
-nmap <Leader>f :GFiles<CR>
+nmap <Leader>f :Rg<CR>
+nmap <Leader>G :GFiles<CR>
 nmap <Leader>l :BLines<CR>
 nmap <Leader>L :Lines<CR>
 nmap <Leader>' :Marks<CR>
@@ -160,6 +161,12 @@ nmap <Leader>H :Helptags!<CR>
 nmap <Leader>hh :History<CR>
 nmap <Leader>h: :History:<CR>
 nmap <Leader>h/ :History/<CR>
+
+" Use a preview window for rg
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 
 " slime things
