@@ -87,6 +87,9 @@ set fillchars+=vert:\
 :autocmd Filetype python set softtabstop=2
 :autocmd Filetype python set sw=2
 :autocmd Filetype python set ts=2
+:autocmd Filetype yaml set softtabstop=2
+:autocmd Filetype yaml set sw=2
+:autocmd Filetype yaml set ts=2
 
 map <F12> :nohlsearch<CR>:echo "Highlights Cleared!"<CR>
 :autocmd FileType mail :nmap <F8> :w<CR>:!aspell -e -c %<CR>:e<CR>
