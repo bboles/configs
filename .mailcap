@@ -30,7 +30,7 @@ image/webp; ~/bin/view-attachment.sh %s webp
 application/pdf; ~/bin/view-attachment.sh %s pdf
 
 # HTML
-text/html; ~/bin/view-attachment.sh %s html
+text/html; links -dump %s; nametemplate=%s.html; copiousoutput
 
 # Unidentified.
 application/octet-stream; ~/bin/view-attachment.sh %s "-" 
