@@ -5,15 +5,24 @@ set sort_aux=last-date-received         # showing threads with youngest message 
 set imap_keepalive='180'
 set imap_user = `grep '^machine default' ~/.netrc | awk '{print $4}'`
 set imap_pass = `grep '^machine default' ~/.netrc | awk '{print $6}'`
-set spoolfile = imaps://outlook.office365.com:993/INBOX
-set folder = imaps://outlook.office365.com:993
-# set record = "imaps://outlook.office365.com:993/Sent Items"
-set postponed = imaps://outlook.office365.com:993/Drafts
-set trash = "imaps://outlook.office365.com:993/Deleted Items"
-set smtp_url = smtp://$imap_user@smtp.office365.com:587/
 set smtp_pass = $imap_pass
 set ssl_force_tls = yes
-set smtp_authenticators = "login"
+
+# Outlook setup
+# set spoolfile = imaps://outlook.office365.com:993/INBOX
+# set folder = imaps://outlook.office365.com:993
+# # set record = "imaps://outlook.office365.com:993/Sent Items"
+# set postponed = imaps://outlook.office365.com:993/Drafts
+# set trash = "imaps://outlook.office365.com:993/Deleted Items"
+# set smtp_url = smtp://$imap_user@smtp.office365.com:587/
+
+# Gmail setup
+set folder = imaps://imap.gmail.com
+set spoolfile = +INBOX
+set record = "+[Gmail]/Sent Mail"
+set postponed = "+[Gmail]/Drafts"
+set smtp_url = "smtps://bb@zbeba.com@smtp.gmail.com:465/"
+set smtp_authenticators = "gssapi:login"
 
 # workaround for deleting a message on imap
 #folder-hook . 'macro pager d "<save-message>=Deleted<quote-char> Items \r" "Move message to trash"'
@@ -21,7 +30,7 @@ set smtp_authenticators = "login"
 set confirmappend = no
 
 set editor="vim +':set textwidth=100' +':set wrap' +\`awk '/^$/ {print i+2; exit} {i++}' %s\` '+startinsert!' %s"
-set from='Brandon Boles <bboles@ntent.com>'
+set from='Brandon Boles <bb@zbeba.com>'
 set signature=~/.mutt/signature.txt
 set sig_on_top=yes
 set delete=yes
