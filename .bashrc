@@ -217,7 +217,6 @@ alias brewup='brew upgrade; brew upgrade --cask'
 alias k='kubectl'
 alias con='k config use-context $(k config get-contexts -o name | fzf)'
 alias nam='k config set-context --current --namespace=$(k get namespaces -o name | sed 's%^namespace/%%' | fzf)'
-alias vman='man'
 
 alias rpmqi='rpm -qi'
 alias rpmqa='rpm -qa | grep '
