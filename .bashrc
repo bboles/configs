@@ -217,6 +217,7 @@ alias brewup='brew upgrade; brew upgrade --cask'
 alias k='kubectl'
 alias con='k config use-context $(k config get-contexts -o name | fzf)'
 alias nam='k config set-context --current --namespace=$(k get namespaces -o name | sed 's%^namespace/%%' | fzf)'
+alias gcloud='docker run --rm --volumes-from gcloud-config gcr.io/google.com/cloudsdktool/cloud-sdk gcloud'
 
 alias rpmqi='rpm -qi'
 alias rpmqa='rpm -qa | grep '
