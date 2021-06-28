@@ -327,15 +327,8 @@ eval "$(/usr/local/bin/starship init bash)"
 
 # source /home/bboles/.config/broot/launcher/bash/br
 
-# begin bash_completion configuration for appcenter completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-[ -f /etc/bash_completion ] && . /etc/bash_completion
-# end bash_completion configuration for appcenter completion
-
 # begin appcenter completion
-source /Users/bboles/.appcenter/completion.sh
-# end appcenter completion
+[[ -f "$HOME/tools/appcenter/completion.sh" ]] && source "$HOME/tools/appcenter/completion.sh"
 
 # completion for gh command
 eval "$(gh completion -s bash)"
