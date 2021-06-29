@@ -231,19 +231,24 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-complete -F _complete_alias k
+if [[ -f ~/src/github/complete-alias/complete_alias ]]; then
+  source ~/src/github/complete-alias/complete_alias
+  complete -F _complete_alias k
+fi
 complete -cf sudo
 complete -o default -o nospace -F _ssh gos
+complete -F _man vman
 # complete -C /home/linuxbrew/.linuxbrew/bin/aws_completer aws
 # [[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
+#complete -C ~/bin/gcloud-docker-completion.sh gcloud
+# source ~/scratch/gcloud-completion/completion.bash.inc
 
 current-branch () {
   git rev-parse --symbolic-full-name --abbrev-ref HEAD
 }
 
 gco () {
-  git checkout -b $1
-  git push --set-upstream origin $1
+  git checkout -b $1 && git push --set-upstream origin $1
 }
 
 rpmcl () {
