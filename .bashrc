@@ -23,8 +23,6 @@ fe() {
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
- Test if _Fzf_ specific _Readline_ file is readable.
-
 if [[ -f ~/.inputrc.fzf && -r ~/.inputrc.fzf ]]; then
 
   # Make _Fzf_ available through _Readline_ key bindings.
