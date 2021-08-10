@@ -10,7 +10,8 @@ $if mode=vi
   "\C-x^": history-expand-line
   #"\C-r": "\C-x\C-addi$(HISTTIMEFORMAT= history | fzf-history)\C-x\C-e\C-x\C-r\C-x^\C-x\C-a$a"
   # Get the commands only, de-dupe and then plug into fzf.
-  "\C-r": "\C-x\C-addi$(awk -F'|' '{print $2}' ~/.persistent_history | awk '!seen[$0]++' | ~/bin/fzf-history)\C-x\C-e\C-x\C-r\C-x^\C-x\C-a$a"
+  #"\C-r": "\C-x\C-addi$(cut -c 22- ~/.persistent_history | awk '!seen[$0]++' | ~/bin/fzf-history)\C-x\C-e\C-x\C-r\C-x^\C-x\C-a$a"
+  "\C-r": "\C-x\C-addi$(__fzf_history)\C-x\C-e\C-x\C-r\C-x^\C-x\C-a$a"
 
   # Key bindings for _Vi_ _Command_ mode
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
