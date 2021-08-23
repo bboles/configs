@@ -340,3 +340,6 @@ eval "$(gh completion -s bash)"
 # completion for kubectl
 source <(kubectl completion bash)
 complete -F __start_kubectl k
+
+# completion for ghapi command
+eval "$(completion-ghapi --install)"
