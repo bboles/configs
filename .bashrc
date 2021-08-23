@@ -277,6 +277,10 @@ rgrep () {
     grep --color=auto -r "$*" *
 }
 
+f () {
+  cd $(fd -H -t d | fzf)
+}
+
 # only if we are interactive...
 if [[ $- =~ "i" ]]; then
   ( [[ -x /usr/bin/fortune ]] || [[ -x /usr/local/bin/fortune ]] ) && fortune 
