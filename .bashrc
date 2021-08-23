@@ -269,12 +269,12 @@ bak () {
 }
 
 mkcd () {
-    mkdir -p "$*"
-    cd "$*"
+  mkdir -p "$*"
+  cd "$*"
 }
 
 rgrep () {
-    grep --color=auto -r "$*" *
+  grep --color=auto -r "$*" *
 }
 
 f () {
