@@ -277,6 +277,12 @@ f () {
   cd $(fd -H -t d | fzf)
 }
 
+fzfman () {
+  apropos '.' | fzf --height=100% --preview-window=down:wrap \
+    --preview='man "$(echo {1} | awk -F"-" "{print $1}" | sed "s/,/\n/g" | sed "s/([123456789])//g")"' \
+    --bind='enter:execute(vman "$(echo {1} | awk -F"-" "{print $1}" | sed "s/,/\n/g" | sed "s/([123456789])//g")")'
+}
+
 # only if we are interactive...
 if [[ $- =~ "i" ]]; then
   ( [[ -x /usr/bin/fortune ]] || [[ -x /usr/local/bin/fortune ]] ) && fortune 
