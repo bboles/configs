@@ -23,13 +23,9 @@ fe() {
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
-if [[ -f ~/.inputrc.fzf && -r ~/.inputrc.fzf ]]; then
-
-  # Make _Fzf_ available through _Readline_ key bindings.
-  #
-  bind -f ~/.inputrc.fzf
-  source ~/bin/fzfhistory
-fi
+source ~/bin/fzfhistory
+bind -m vi-insert -x '"\C-r": "__fzf_history"'
+bind -m vi-command -x '"\C-r": "__fzf_history"'
 
 # append each command to our shell history
 export HISTTIMEFORMAT='%F %T '          # timestamp each entry
@@ -50,7 +46,7 @@ log_bash_persistent_history() {
   local date_part="${BASH_REMATCH[1]}"
   local command_part="${BASH_REMATCH[2]}"
   if [[ "$command_part" != "$PERSISTENT_HISTORY_LAST" ]]; then
-    echo $date_part "|" "$command_part" >> ~/.persistent_history
+    echo $date_part"|""$command_part" >> ~/.persistent_history
     export PERSISTENT_HISTORY_LAST="$command_part"
   fi
 }
