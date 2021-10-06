@@ -212,7 +212,7 @@ alias brewup='brew upgrade; brew upgrade --cask'
 alias k='kubectl'
 alias con='k config use-context $(k config get-contexts -o name | fzf)'
 alias nam='k config set-context --current --namespace=$(k get namespaces -o name | sed 's%^namespace/%%' | fzf)'
-alias gcloud='docker run --rm -ti -v $(pwd):/mnt -v $HOME/.config/gcloud:/root/.config/gcloud -v $HOME/.ssh/google_compute_engine:/root/.ssh/google_compute_engine -v $HOME/.ssh/google_compute_known_hosts:/root/.ssh/google_compute_known_hosts -v $HOME/.ssh/google_compute_engine.pub:/root/.ssh/google_compute_engine.pub google/cloud-sdk gcloud'
+# alias gcloud='docker run --rm -ti -v $(pwd):/mnt -v $HOME/.config/gcloud:/root/.config/gcloud -v $HOME/.ssh/google_compute_engine:/root/.ssh/google_compute_engine -v $HOME/.ssh/google_compute_known_hosts:/root/.ssh/google_compute_known_hosts -v $HOME/.ssh/google_compute_engine.pub:/root/.ssh/google_compute_engine.pub google/cloud-sdk gcloud'
 
 alias rpmqi='rpm -qi'
 alias rpmqa='rpm -qa | grep '
