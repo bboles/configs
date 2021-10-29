@@ -335,8 +335,8 @@ fi
 #
 # This keeps openssl updated with brew vs. not being updated otherwise
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 eval "$(/usr/local/bin/starship init bash)"
 
