@@ -274,7 +274,12 @@ rgrep () {
 }
 
 f () {
-  cd $(fd -H -t d | fzf)
+  local _dir=$(cd ~; fd -H -t d | fzf)
+
+  # Only cd if the dir exists.
+  if [[ -d "$_dir" ]]; then
+    cd "~/$_dir"
+  fi
 }
 
 fzfman () {
