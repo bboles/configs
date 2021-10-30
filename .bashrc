@@ -277,8 +277,8 @@ f () {
   local _dir=$(cd ~; fd -H -t d | fzf)
 
   # Only cd if the dir exists.
-  if [[ -d "$_dir" ]]; then
-    cd "~/$_dir"
+  if [[ -d "$HOME/$_dir" ]]; then
+    cd "$HOME/$_dir"
   fi
 }
 
