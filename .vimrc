@@ -149,6 +149,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+" indentLine things
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
 " fzf things
 let $FZF_DEFAULT_COMMAND='find .'
 nmap <Leader>F :Files<CR>
