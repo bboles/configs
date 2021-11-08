@@ -69,6 +69,9 @@ set guioptions-=T
 " don't show tear-off menus
 set guioptions-=t
 
+" keep tab bar removal and other gui things from resizing the window
+set guioptions+=k
+
 " show dates/times in listing
 let g:netrw_liststyle = 1
 
