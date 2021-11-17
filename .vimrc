@@ -146,6 +146,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'sheerun/vim-polyglot'
 Plug 'jez/vim-superman'
 Plug 'jpalardy/vim-slime'
+Plug 'tpope/vim-jdaddy'
 " Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " devicons should always be loaded last
