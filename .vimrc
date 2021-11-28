@@ -2,54 +2,13 @@ colorscheme torte
 hi Pmenu guibg=NavyBlue
 syntax on
 set statusline=%F%m%r%h%w\ %=\ %{FugitiveStatusline()}\ FMT=%{&ff}\ TYPE=%Y\ ASCII=\%03.3b\ HEX=\%02.2B\ L:\%05l/%L\ C:\%03v\ %p%%\ LEN=%L
-" set statusline=%F%m%r%h%w
-" set statusline+=%=
-" set statusline+=TYPE:%Y 
-" set statusline+=FMT:%{&ff} 
-" set statusline+=ASCII:\%03.3b 
-" set statusline+=HEX:\%02.2B 
-" set statusline+=L:%05l/%L 
-" set statusline+=C:%03v 
-" set statusline+=%p%%
-"set statusline+=LEN=%L
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set laststatus=2
 
 let mapleader = ","
 " 3s timeout for leader
 set timeoutlen=3000
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_docker_checkers = ['hadolint']
-" let g:syntastic_markdown_checkers = ['proselint']
-" let g:syntastic_puppet_checkers = ['puppet-lint']
-" let g:syntastic_python_checkers = ['pylint']
-" let g:syntastic_sh_checkers = ['shellcheck']
-" " turn off vint because it crashes
-" " let g:syntastic_vim_checkers = ['vint']
-" let g:syntastic_yaml_checkers = ['yamllint']
-" 
-" " let b:togglestc=1
-" let b:togglestc=1
-" function ToggleSTC()
-"   if togglestc
-"       :SyntasticCheck
-"       let b:togglestc=0
-"   else
-"       :SyntasticReset
-"       let b:togglestc=1
-"   endif
-" endfunction
-" 
-" nnoremap <F4> :call ToggleSTC()<CR>
-
-" fix shift-insert for gvim
-" inoremap <S-Insert> <C-R>*
 
 " make all tabs spaces (Ctrl-v Tab for a real tab)
 set tabstop=4 shiftwidth=4 expandtab
