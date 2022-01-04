@@ -226,6 +226,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+alias git='git-branchless wrap'
+
 if [[ -f ~/src/github/complete-alias/complete_alias ]]; then
   source ~/src/github/complete-alias/complete_alias
   complete -F _complete_alias k
