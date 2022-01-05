@@ -248,6 +248,18 @@ gco () {
   git checkout -b $1 && git push --set-upstream origin $1
 }
 
+ghclone () {
+  local ghuserorg=$(echo "$1" | awk -F':' '{print $2}' | awk -F'/' '{print $1}')
+  local newdir=$(echo "$1" | awk -F':' '{print $2}' | awk -F'/' '{print $2}' | sed 's/.git//')
+
+  cd ~/src/github
+  mkdir "$ghuserorg"
+  cd "$ghuserorg"
+
+  git clone "$1"
+  cd "$newdir"
+}
+
 rpmcl () {
   rpm --changelog -q $1 | more
 }
