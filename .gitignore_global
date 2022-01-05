@@ -21,4 +21,6 @@ tags
 # gradle artifacts
 .gradle
 build
-ntent.environment.gradle
+
+# pyenv things
+.python-version
