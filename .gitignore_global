@@ -24,3 +24,6 @@ build
 
 # pyenv things
 .python-version
+
+# dotenv settings
+.env
