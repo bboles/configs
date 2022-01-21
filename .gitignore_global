@@ -22,6 +22,11 @@ tags
 .gradle
 build
 
+# python things
+__pycache__/
+*.py[cod]
+*$py.class
+
 # pyenv things
 .python-version
 
