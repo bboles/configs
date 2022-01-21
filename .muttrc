@@ -3,9 +3,9 @@ set sort_browser=reverse-date           # showing mbox list default to newest fi
 set sort_aux=last-date-received         # showing threads with youngest message last
 
 set imap_keepalive='180'
-set imap_user = `grep '^machine default' ~/.netrc | awk '{print $4}'`
-set imap_pass = `grep '^machine default' ~/.netrc | awk '{print $6}'`
-set smtp_pass = $imap_pass
+# set imap_user = `grep '^machine default' ~/.netrc | awk '{print $4}'`
+# set imap_pass = `grep '^machine default' ~/.netrc | awk '{print $6}'`
+# set smtp_pass = $imap_pass
 set ssl_force_tls = yes
 
 # Outlook setup
@@ -17,12 +17,27 @@ set ssl_force_tls = yes
 # set smtp_url = smtp://$imap_user@smtp.office365.com:587/
 
 # Gmail setup
+source ~/.mutt/accounts
+set imap_user = "$my_email"
 set folder = imaps://imap.gmail.com
-set spoolfile = +INBOX
-set record = "+[Gmail]/Sent Mail"
+set spoolfile = "+INBOX"
 set postponed = "+[Gmail]/Drafts"
-set smtp_url = "smtps://bb@zbeba.com@smtp.gmail.com:465/"
-set smtp_authenticators = "gssapi:login"
+unset record
+set smtp_url = "smtps://$my_email@smtp.gmail.com:465/"
+set smtp_authenticators = "oauthbearer"
+set smtp_oauth_refresh_command = "~/.mutt/bin/oauth2.py \
+    --quiet \
+    --user=$my_email \
+    --client_id=$my_client_id \
+    --client_secret=$my_client_secret \
+    --refresh_token=$my_refresh_token"
+set imap_authenticators = "oauthbearer"
+set imap_oauth_refresh_command = "~/.mutt/bin/oauth2.py \
+    --quiet \
+    --user=$my_email \
+    --client_id=$my_client_id \
+    --client_secret=$my_client_secret \
+    --refresh_token=$my_refresh_token"
 
 # workaround for deleting a message on imap
 #folder-hook . 'macro pager d "<save-message>=Deleted<quote-char> Items \r" "Move message to trash"'
