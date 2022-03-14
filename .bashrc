@@ -260,6 +260,10 @@ ghclone () {
   cd "$newdir"
 }
 
+rstats () {
+  gh api orgs/RedemptionGames/actions/runners --jq '.runners[] | "\(.name) \(.status) \(.busy)"'
+}
+
 rpmcl () {
   rpm --changelog -q $1 | more
 }
