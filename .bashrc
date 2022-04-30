@@ -306,6 +306,14 @@ fzfman () {
     --bind='enter:execute(vman "$(echo {1} | awk -F"-" "{print $1}" | sed "s/,/\n/g" | sed "s/([123456789])//g")")'
 }
 
+chenv () {
+  if [[ -f ".envrc.$1" ]]; then
+    ln -fs .envrc.$1 .envrc
+  else
+    echo "File .envrc.$1 does not exist."
+  fi
+}
+
 # only if we are interactive...
 if [[ $- =~ "i" ]]; then
   ( [[ -x /usr/bin/fortune ]] || [[ -x /usr/local/bin/fortune ]] ) && fortune 
