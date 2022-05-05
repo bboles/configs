@@ -35,3 +35,4 @@ __pycache__/
 
 # scrap dir for various thing
 .localdir
+tmp
