@@ -31,7 +31,7 @@ __pycache__/
 .python-version
 
 # dotenv settings
-.env
+.env*
 
 # scrap dir for various thing
 .localdir
