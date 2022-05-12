@@ -22,7 +22,7 @@ disabled            = true
 min_time            = 5
 
 [kubernetes]
-disabled            = false
+disabled            = true
 [kubernetes.context_aliases]
 # Contexts from GKE, AWS and other cloud providers usually carry additional
 # information, like the region/zone.  The following entry matches on the GKE
