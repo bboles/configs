@@ -108,7 +108,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jez/vim-superman'
 Plug 'jpalardy/vim-slime'
 Plug 'sodapopcan/vim-twiggy'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " devicons should always be loaded last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
