@@ -159,5 +159,24 @@ inoremap <silent><expr> <Tab>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" automatically highlight column 80 if textwidth is 0 otherwise use the
+" setting for textwidth
+function! s:SetColorColumn()
+  if &textwidth == 0
+    setlocal colorcolumn=80
+  else
+    setlocal colorcolumn=+0
+  endif
+endfunction
+
+augroup colorcolumn
+  autocmd!
+  autocmd OptionSet textwidth call s:SetColorColumn()
+  autocmd BufEnter * call s:SetColorColumn()
+augroup end
+
+hi ColorColumn ctermbg=darkblue guibg=darkblue
+
+
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
