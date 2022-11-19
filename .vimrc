@@ -37,6 +37,9 @@ let g:netrw_liststyle = 1
 " make a cleaner vertical split divider
 set fillchars+=vert:\ 
 
+" number of commands to keep
+set history=10000
+
 " make macvim work right in visual mode
 :highlight Visual cterm=reverse ctermbg=NONE
 
