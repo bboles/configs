@@ -11,13 +11,13 @@ let mapleader = ","
 set timeoutlen=3000
 
 " make all tabs spaces (Ctrl-v Tab for a real tab)
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=2 shiftwidth=2 expandtab
 
 " cursor no blinky
 set guicursor+=a:blinkon0
 
 " preferred font
-set guifont=Edlo:h14
+set guifont=EdloNerdFont-:h12
 
 " show tab numbers
 set guitablabel=%N:%M%t 
