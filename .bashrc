@@ -115,13 +115,16 @@ gco() {
   git checkout -b $1 && git push --set-upstream origin $1
 }
 
-ghclone() {
-  local ghuserorg=$(echo "$1" | awk -F':' '{print $2}' | awk -F'/' '{print $1}')
-  local newdir=$(echo "$1" | awk -F':' '{print $2}' | awk -F'/' '{print $2}' | sed 's/.git//')
+gclone() {
+  local firsthalf="${1%:*}"
+  local secondhalf="${1#*:}"
+  local site="$(echo ${firsthalf#*@} | sed 's/.com//')"
+  local org="${secondhalf%/*}"
+  local newdir="$(echo "${secondhalf%.git}" | awk -F'/' '{print $2}')"
 
-  cd ~/src/github
-  mkdir "$ghuserorg"
-  cd "$ghuserorg"
+  cd ~/src
+  mkdir -p "$site/$org"
+  cd "$site/$org"
 
   git clone "$1"
   cd "$newdir"
