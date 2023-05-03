@@ -247,7 +247,7 @@ complete -F _man vman
 
 # Only if we are interactive.
 if [[ $- =~ "i" ]]; then
-  ([[ -x /usr/bin/fortune ]] || [[ -x /usr/local/bin/fortune ]]) && fortune
+  ([[ -x /usr/bin/fortune ]] || [[ -x $(brew --prefix)/bin/fortune ]]) && fortune
 
   # Put some color in our man pages.
   export LESS_TERMCAP_mb=$(
@@ -286,8 +286,10 @@ if [[ $- =~ "i" ]]; then
   export GROFF_NO_SGR=1 # Needed for Konsole.
 fi
 
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+if [[ -f $(brew --prefix)/bin/gcloud  ]]; then
+  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
@@ -301,10 +303,13 @@ fi
 #
 # This keeps openssl updated with brew vs. not being updated otherwise
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
 
-eval "$(/usr/local/bin/starship init bash)"
+if [[ -f $(brew --prefix)/bin/chruby  ]]; then
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
+  source /usr/local/opt/chruby/share/chruby/auto.sh
+fi
+
+eval "$($(brew --prefix)/bin/starship init bash)"
 
 [[ -f "$HOME/tools/appcenter/completion.sh" ]] && source "$HOME/tools/appcenter/completion.sh"
 
@@ -314,9 +319,6 @@ eval "$(gh completion -s bash)"
 # Completion for kubectl
 source <(kubectl completion bash)
 complete -F __start_kubectl k
-
-# Completion for ghapi command
-eval "$(completion-ghapi --install)"
 
 # nvm things.
 export NVM_DIR="$HOME/.nvm"
