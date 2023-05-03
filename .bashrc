@@ -6,7 +6,7 @@ unset PROMPT_COMMAND
 
 PATH=~/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin:/usr/local/opt/mysql-client/bin
 
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . /usr/local/etc/profile.d/bash_completion.sh
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . $(brew --prefix)/etc/profile.d/bash_completion.sh
 
 source ~/bin/fzfhistory
 bind -m vi-insert -x '"\C-r": "__fzf_history"'
@@ -235,7 +235,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias git='git-branchless wrap'
+# alias git='git-branchless wrap'
 
 if [[ -f ~/src/github/complete-alias/complete_alias ]]; then
   source ~/src/github/complete-alias/complete_alias
