@@ -93,8 +93,8 @@ truncation_length   = 12
 truncate_to_repo    = false
 
 [cmd_duration]
-disabled            = true 
-min_time            = 5
+disabled            = false 
+#min_time            = 5
 
 [kubernetes]
 disabled            = true
