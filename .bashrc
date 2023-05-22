@@ -55,6 +55,8 @@ export EDITOR=/usr/bin/vim
 export BAT_THEME="DarkNeon"
 export FZF_DEFAULT_COMMAND='find .'
 export FZF_HISTORY_FZF_OPTS='--pointer=-> --tiebreak=begin'
+# Set FZF key bindings for Vim
+export FZF_DEFAULT_OPTS="--bind='ctrl-n:down,ctrl-p:up,ctrl-f:page-down,ctrl-b:page-up,ctrl-a:toggle-all'"
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgrep.txt
 export VERSION_CONTROL=numbered
 # This is so git knows about our gpg key.
