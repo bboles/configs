@@ -3,6 +3,7 @@ vim.cmd('colorscheme torte')
 vim.opt.clipboard = 'unnamedplus'   -- use system clipboard 
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 vim.opt.mouse = 'a'                 -- allow the mouse to be used in Nvim
+vim.g.netrw_liststyle = 1           -- show timestamps in listing
 
 -- Tab
 vim.opt.tabstop = 2                 -- number of visual spaces per TAB
