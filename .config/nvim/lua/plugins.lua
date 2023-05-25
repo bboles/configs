@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
     use { 'junegunn/fzf' }
     use { 'neoclide/coc.nvim', branch = 'release', config = [[require('config.coc')]] }
     use { 'ryanoasis/vim-devicons' }
+    use { 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent-blankline')]] }
 
     -- Autocompletion things.
     use { 'hrsh7th/nvim-cmp', config = [[require('config.nvim-cmp')]] }    
