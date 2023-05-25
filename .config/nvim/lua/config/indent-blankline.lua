@@ -9,6 +9,7 @@ vim.cmd [[highlight IndentBlanklineIndent6 guifg=#563361 gui=nocombine]]
 
 require("indent_blankline").setup {
     space_char_blankline = " ",
+    char_list = {'|', '¦', '┆', '┊'},
     char_highlight_list = {
         "IndentBlanklineIndent1",
         "IndentBlanklineIndent2",
