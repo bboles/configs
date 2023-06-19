@@ -55,6 +55,8 @@ return require('packer').startup(function(use)
 
     -- Git things.
     use 'tpope/vim-fugitive'
+    use 'tpope/vim-rhubarb'
+    use { 'shumphrey/fugitive-gitlab.vim', config = [[require('config.fugitive-gitlab')]] }
 
     -- Status line.
     use {
