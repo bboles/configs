@@ -58,6 +58,9 @@ return require('packer').startup(function(use)
     use 'tpope/vim-rhubarb'
     use { 'shumphrey/fugitive-gitlab.vim', config = [[require('config.fugitive-gitlab')]] }
 
+    -- Python things.
+    use 'psf/black'
+
     -- Status line.
     use {
       'nvim-lualine/lualine.nvim',
