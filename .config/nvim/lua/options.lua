@@ -24,3 +24,20 @@ vim.opt.incsearch = true            -- search as characters are entered
 vim.opt.hlsearch = true             -- highlight matches
 vim.opt.ignorecase = true           -- ignore case in searches by default
 vim.opt.smartcase = true            -- but make it case sensitive if an uppercase is entered
+
+-- These bits cause a message to be displayed if the file is modified outside of nvim.
+if vim.g.CheckUpdateStarted == nil then
+    vim.g.CheckUpdateStarted = 1
+    vim.fn.timer_start(1, function()
+        vim.cmd('silent! checktime')
+        vim.fn.timer_start(1000, function()
+            CheckUpdate(timer)
+        end)
+    end)
+end
+function CheckUpdate(timer)
+    vim.cmd('silent! checktime')
+    vim.fn.timer_start(1000, function()
+        CheckUpdate(timer)
+    end)
+end
