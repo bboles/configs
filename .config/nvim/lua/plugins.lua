@@ -38,6 +38,7 @@ return require('packer').startup(function(use)
     use { 'williamboman/mason-lspconfig.nvim'}
     use { 'neovim/nvim-lspconfig' }
     use { 'junegunn/fzf' }
+    use { 'neoclide/coc.nvim', branch = 'release', config = [[require('config.coc')]] }
     use { 'ryanoasis/vim-devicons' }
     use { 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent-blankline')]] }
     use { 'ibhagwan/fzf-lua',
