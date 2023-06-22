@@ -18,7 +18,6 @@ require('mason-lspconfig').setup({
                          'dockerls',
                          'dotls',
                          'jsonls',
-                         'pylsp',
                          'salt_ls',
                          'sqlls',
                          'terraformls',
