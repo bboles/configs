@@ -20,7 +20,7 @@ vim.opt.cursorline = true           -- highlight cursor line underneath the curs
 vim.opt.splitbelow = false          -- open new vertical split top
 vim.opt.splitright = true           -- open new horizontal splits right
 vim.opt.termguicolors = true        -- enable 24-bit RGB color in the TUI
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 
 -- Searching
 vim.opt.incsearch = true            -- search as characters are entered
