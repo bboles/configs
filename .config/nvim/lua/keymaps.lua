@@ -39,6 +39,12 @@ vim.keymap.set('c', '<D-v>', '<C-r>+', {noremap = true})
 
 vim.api.nvim_set_keymap('n', '<F12>', ':nohlsearch<CR>:echo "Highlights Cleared!"<CR>', { silent = true })
 
+-- Keeps cursor at the same spot instead of sticking it at the end of the line.
+vim.keymap.set("n", "J", "mzJ`z")
+-- Keeps search term in the middle of the screen.
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
 -----------------
 -- Visual mode --
 -----------------
