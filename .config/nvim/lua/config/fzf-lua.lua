@@ -28,3 +28,5 @@ vim.api.nvim_set_keymap('n', '<Leader>:', ':FzfLua command_history<CR>', { silen
 vim.api.nvim_set_keymap('n', '<Leader>/', ':FzfLua search_history<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>m', ':FzfLua man_pages<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>k', ':FzfLua keymaps<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>b', ':FzfLua buffers<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>?', ':FzfLua help_tags<CR>', { silent = true })
