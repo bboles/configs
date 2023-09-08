@@ -27,6 +27,7 @@ vim.opt.termguicolors = true        -- enable 24-bit RGB color in the TUI
 vim.opt.incsearch = true            -- search as characters are entered
 vim.opt.hlsearch = true             -- highlight matches
 vim.opt.ignorecase = false          -- don't ignore case in searches by default
+
 -- This makes highlights disappear as soon as you press any movement key.
 vim.on_key(function(char)
   if vim.fn.mode() == "n" then
@@ -34,8 +35,6 @@ vim.on_key(function(char)
     if vim.opt.hlsearch:get() ~= new_hlsearch then vim.opt.hlsearch = new_hlsearch end
   end
 end, vim.api.nvim_create_namespace "auto_hlsearch")
-
-
 
 -- These bits cause a message to be displayed if the file is modified outside of nvim.
 if vim.g.CheckUpdateStarted == nil then
@@ -53,3 +52,6 @@ function CheckUpdate(timer)
         CheckUpdate(timer)
     end)
 end
+
+-- Lint on save of .gitlab-ci.yml.
+autocmd BufWritePost *.gitlab-ci.yml !glab ci lint %
