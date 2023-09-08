@@ -26,8 +26,7 @@ vim.opt.termguicolors = true        -- enable 24-bit RGB color in the TUI
 -- Searching
 vim.opt.incsearch = true            -- search as characters are entered
 vim.opt.hlsearch = true             -- highlight matches
-vim.opt.ignorecase = true           -- ignore case in searches by default
-vim.opt.smartcase = true            -- but make it case sensitive if an uppercase is entered
+vim.opt.ignorecase = false          -- don't ignore case in searches by default
 -- This makes highlights disappear as soon as you press any movement key.
 vim.on_key(function(char)
   if vim.fn.mode() == "n" then
