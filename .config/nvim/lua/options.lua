@@ -54,4 +54,4 @@ function CheckUpdate(timer)
 end
 
 -- Lint on save of .gitlab-ci.yml.
-autocmd BufWritePost *.gitlab-ci.yml !glab ci lint %
+vim.cmd('autocmd BufWritePost *.gitlab-ci.yml !glab ci lint %')
