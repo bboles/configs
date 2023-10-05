@@ -44,17 +44,6 @@ return require('packer').startup(function(use)
       config = [[require('config.fzf-lua')]]
     }
 
-    -- Autocompletion things.
-    use { 'hrsh7th/nvim-cmp', config = [[require('config.nvim-cmp')]] }    
-    use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' } 
-    use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }        -- buffer auto-completion
-    use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }          -- path auto-completion
-    use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }       -- cmdline auto-completion
-
-    -- Code snippets.
-    use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
-
     -- Git things.
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
