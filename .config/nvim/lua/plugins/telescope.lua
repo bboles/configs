@@ -31,7 +31,7 @@ M.config = function()
   vim.api.nvim_set_keymap('n', '<Leader>fh', ':Telescope help_tags<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope man_pages<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<Leader>f?', ':Telescope keymaps<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope git_branches<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<Leader>fB', ':Telescope git_branches<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<Leader>fs', ':Telescope git_stash<CR>', { silent = true })
 end
 
