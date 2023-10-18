@@ -6,7 +6,12 @@ local M = {
 M.config = function()
   require('telescope').setup({
     -- Use "dropdown" theme for all pickers.
-    defaults = require('telescope.themes').get_dropdown { },
+    defaults = require('telescope.themes').get_dropdown {
+      initial_mode = "normal",
+      layout_config = {
+        width = 0.8
+      },
+    },
   })
 
   vim.api.nvim_set_keymap('n', '<Leader>fF', ':Telescope find_files<CR>', { silent = true })
