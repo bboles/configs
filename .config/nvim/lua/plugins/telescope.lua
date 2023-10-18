@@ -8,6 +8,7 @@ M.config = function()
     -- Use "dropdown" theme for all pickers.
     defaults = require('telescope.themes').get_dropdown {
       initial_mode = "normal",
+      -- Width is 80% of screen.
       layout_config = {
         width = 0.8
       },
