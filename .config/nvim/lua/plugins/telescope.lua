@@ -13,6 +13,14 @@ M.config = function()
         width = 0.8
       },
     },
+    pickers = {
+      live_grep = {
+        initial_mode = "insert"
+      },
+      grep_string = {
+        initial_mode = "insert"
+      },
+    },
   })
 
   vim.api.nvim_set_keymap('n', '<Leader>fF', ':Telescope find_files<CR>', { silent = true })
