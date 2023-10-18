@@ -2,5 +2,18 @@
   // Handle gitlab's use of reference tags.
   "yaml.customTags": [
     "!reference sequence"
-  ]
+  ],
+
+	"languageserver": {
+		"terraform": {
+			"command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		}
+	}
 }
