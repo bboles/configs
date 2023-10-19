@@ -7,23 +7,15 @@ M.config = function()
   require('telescope').setup({
     -- Use "dropdown" theme for all pickers.
     defaults = require('telescope.themes').get_dropdown {
-      initial_mode = "normal",
       -- Width is 80% of screen.
       layout_config = {
         width = 0.8
       },
     },
-    pickers = {
-      live_grep = {
-        initial_mode = "insert"
-      },
-      grep_string = {
-        initial_mode = "insert"
-      },
-    },
   })
 
   vim.api.nvim_set_keymap('n', '<Leader>fF', ':Telescope find_files<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope git_files<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<Leader>fG', ':Telescope grep_string<CR>', { silent = true })
   vim.api.nvim_set_keymap('n', '<Leader>fg', ':Telescope live_grep<CR>', { silent = true })
