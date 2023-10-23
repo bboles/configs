@@ -5,6 +5,7 @@
 unset PROMPT_COMMAND
 
 # PATH=~/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin:/usr/local/opt/mysql-client/bin
+PATH=~/bin:$PATH
 
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . $(brew --prefix)/etc/profile.d/bash_completion.sh
 
