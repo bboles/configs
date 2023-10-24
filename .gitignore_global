@@ -4,8 +4,8 @@
 [._]s[a-v][a-z]
 [._]sw[a-p]
 
-# Session
-Session.vim
+# Session files
+*.vim
 
 # Temporary
 .netrwhist
