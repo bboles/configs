@@ -55,3 +55,23 @@ end
 
 -- Lint on save of .gitlab-ci.yml.
 vim.cmd('autocmd BufWritePost *.gitlab-ci.yml !glab ci lint %')
+
+
+function create_session_with_git_branch()
+  -- Get current git branch
+  local git_branch = vim.fn.system('git rev-parse --abbrev-ref HEAD 2>/dev/null')
+  git_branch = string.gsub(git_branch, "\n", "")
+
+  -- Check if currently on a git branch
+  if git_branch ~= "" then
+    -- Convert '/' to '_'
+    git_branch = string.gsub(git_branch, "/", "_")
+
+    -- Save the session file with .vim extension
+    local session_file = git_branch .. '.vim'
+    vim.cmd('mksession! ' .. session_file)
+    vim.notify('Created session: ' .. session_file, 'info')
+  else
+    vim.notify('Not currently on a git branch', 'warn')
+  end
+end
