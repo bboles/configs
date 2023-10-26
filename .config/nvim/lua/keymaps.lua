@@ -52,3 +52,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Hint: start visual mode with the same area as the previous area and the same mode
 vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
+
+
+vim.api.nvim_set_keymap('n', '<Leader>p', ':Glow<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>s', ':lua create_session_with_git_branch()<CR>', { silent = true })
