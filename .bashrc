@@ -52,7 +52,7 @@ shopt -s extglob
 set -o vi
 
 export PROMPT_COMMAND="run_on_prompt_command"
-export EDITOR=/usr/bin/vim
+export EDITOR=$(brew --prefix)/bin/nvim
 export BAT_THEME="DarkNeon"
 export FZF_DEFAULT_COMMAND='find .'
 export FZF_HISTORY_FZF_OPTS='--pointer=-> --tiebreak=begin'
@@ -221,7 +221,7 @@ alias svi='sudoedit'
 alias sshcopyid='ssh-copy-id -i ~/.ssh/id_rsa.pub'
 alias svn='colorsvn'
 alias ave='ansible-vault edit'
-alias vi='/usr/bin/vim'
+alias vi='$(brew --prefix)/bin/nvim'
 alias nv='nvim-qt'
 alias brewup='brew upgrade; brew upgrade --cask'
 alias k='kubectl'
