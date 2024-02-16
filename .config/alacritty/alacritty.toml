@@ -1,0 +1,34 @@
+import = ["${HOME}/src/github/alacritty/alacritty-theme/themes/hyper.toml"]
+
+[bell.command]
+args = ["-e", "beep"]
+program = "osascript"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor]
+unfocused_hollow = true
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "Edlo Nerd Font"
+
+[font.bold_italic]
+family = "Edlo Nerd Font"
+
+[font.italic]
+family = "Edlo Nerd Font"
+
+[font.normal]
+family = "Edlo Nerd Font"
+
+[font.offset]
+x = 1
+y = 0
+
+[shell]
+args = ["--login"]
+program = "/opt/homebrew/bin/bash"
