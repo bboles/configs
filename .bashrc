@@ -337,3 +337,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # direnv things
 eval "$(direnv hook bash)"
+
+eval "$(ssh-agent -s)"
