@@ -338,4 +338,7 @@ export NVM_DIR="$HOME/.nvm"
 # direnv things
 eval "$(direnv hook bash)"
 
-eval "$(ssh-agent -s)"
+if [[ "${OSTYPE}" == 'linux-gnu' ]]; then
+  keychain id_ed25519
+  . ~/.keychain/`uname -n`-sh
+fi
