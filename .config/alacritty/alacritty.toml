@@ -1,4 +1,4 @@
-import = ["${HOME}/src/github/alacritty/alacritty-theme/themes/hyper.toml"]
+import = ["~/src/github.com/alacritty/alacritty-theme/themes/hyper.toml"]
 
 [bell.command]
 args = ["-e", "beep"]
