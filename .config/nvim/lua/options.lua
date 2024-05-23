@@ -75,3 +75,8 @@ function create_session_with_git_branch()
     vim.notify('Not currently on a git branch', 'warn')
   end
 end
+
+-- Specifics for Neovide.
+if vim.g.neovide then
+  vim.g.neovide_cursor_vfx_mode = "railgun"
+end
