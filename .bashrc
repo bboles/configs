@@ -196,11 +196,16 @@ chenv() {
   fi
 }
 
-alias l='ls --color -G -al'
-alias lh='ls --color -G -alh'
-alias ls='ls --color -G'
-alias ll='ls --color -G -l'
-alias lt='ls --color -G -altr'
+alias ls='lsd'
+alias l='ls -al'
+alias lh='ls -alh'
+alias ll='ls -l'
+alias lt='ls -altr'
+# alias l='ls --color -G -al'
+# alias lh='ls --color -G -alh'
+# alias ls='ls --color -G'
+# alias ll='ls --color -G -l'
+# alias lt='ls --color -G -altr'
 alias grep='grep --color=auto'
 alias igrep='grep --color=auto -i'
 alias ifind='find . -iname'
