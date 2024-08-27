@@ -1,58 +1,59 @@
--- define common options
-local opts = {
-    noremap = true,      -- non-recursive
-    silent = true,       -- do not show message
-}
+-- [[ Basic Keymaps ]]
+--  See `:help vim.keymap.set()`
 
--- Set leader key to comma.
-vim.g.mapleader = ','
-vim.o.timeoutlen = 3000
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
------------------
--- Normal mode --
------------------
+-- Diagnostic keymaps
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Hint: see `:h vim.map.set()`
--- Better window navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
-vim.keymap.set('n', '<C-j>', '<C-w>j', opts)
-vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
-vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
+-- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+-- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
+-- is not what someone will guess without a bit more experience.
+--
+-- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- or just use <C-\><C-n> to exit terminal mode
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Resize with arrows
--- delta: 2 lines
-vim.keymap.set('n', '<C-Up>', ':resize -2<CR>', opts)
-vim.keymap.set('n', '<C-Down>', ':resize +2<CR>', opts)
-vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', opts)
-vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', opts)
+-- TIP: Disable arrow keys in normal mode
+-- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+-- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+-- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+-- Keybinds to make split navigation easier.
+--  Use CTRL+<hjkl> to switch between windows
+--
+--  See `:help wincmd` for a list of all window commands
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- [[ Basic Autocommands ]]
+--  See `:help lua-guide-autocommands`
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
 -- Netrw
-vim.keymap.set('n', '-', ':Explore<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '-', ':Explore<CR>', { noremap = true, silent = true })
 
--- Paste from system clipboard
-vim.keymap.set('n', '<leader>p', '"+p', {noremap = true})
-vim.keymap.set('v', '<leader>p', '"+p', {noremap = true})
-vim.keymap.set('n', '<D-v>', '"+p', {noremap = true})
-vim.keymap.set('v', '<D-v>', '"+p', {noremap = true})
-vim.keymap.set('i', '<D-v>', '<C-r>+', {noremap = true})
-vim.keymap.set('c', '<D-v>', '<C-r>+', {noremap = true})
-
-vim.api.nvim_set_keymap('n', '<F12>', ':nohlsearch<CR>:echo "Highlights Cleared!"<CR>', { silent = true })
+-- Assign the :Neogit command to '<leader>G' key in normal mode
+vim.keymap.set('n', '<leader>G', ':Neogit<CR>', { silent = true })
 
 -- Keeps cursor at the same spot instead of sticking it at the end of the line.
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set('n', 'J', 'mzJ`z')
 -- Keeps search term in the middle of the screen.
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set('n', 'n', 'nzzzv')
 
------------------
--- Visual mode --
------------------
-
--- Hint: start visual mode with the same area as the previous area and the same mode
-vim.keymap.set('v', '<', '<gv', opts)
-vim.keymap.set('v', '>', '>gv', opts)
-
-
-vim.api.nvim_set_keymap('n', '<Leader>p', ':Glow<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>s', ':lua create_session_with_git_branch()<CR>', { silent = true })
+-- vim: ts=2 sts=2 sw=2 et
