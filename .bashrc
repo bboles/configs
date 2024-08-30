@@ -196,6 +196,17 @@ chenv() {
   fi
 }
 
+env-vault-auth () {
+  vault auth "$@" && \
+  if [ -f ~/.vault-token ]; then
+    token=$(cat ~/.vault-token)
+    if [ ! -z $token ]; then
+      export VAULT_TOKEN=$token
+    fi
+    rm ~/.vault-token
+  fi
+}
+
 alias ls='lsd'
 alias l='ls -al'
 alias lh='ls -alh'
