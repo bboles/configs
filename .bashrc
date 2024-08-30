@@ -197,7 +197,7 @@ chenv() {
 }
 
 env-vault-auth () {
-  vault auth "$@" && \
+  vault login "$@" && \
   if [ -f ~/.vault-token ]; then
     token=$(cat ~/.vault-token)
     if [ ! -z $token ]; then
