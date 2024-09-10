@@ -114,6 +114,6 @@ format              = '[$symbol$project(\($region\))]($style)'
 [nodejs]
 disabled            = true
 
-[env_var.STAGING_ENVIRONMENT]
-format              = "using [$env_value]($style) "
+[env_var.VAULT_NAMESPACE]
+format              = "ns:[$env_value]($style) "
 style               = "bold red"
