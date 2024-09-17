@@ -9,9 +9,11 @@ PATH=~/bin:$PATH
 
 if [[ "${OSTYPE}" == 'linux-gnu' ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+  eval "$(brew shellenv)"
 fi
 
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . $(brew --prefix)/etc/profile.d/bash_completion.sh
+[[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
 source ~/bin/fzfhistory
 bind -m vi-insert -x '"\C-r": "__fzf_history"'
@@ -56,7 +58,7 @@ shopt -s extglob
 set -o vi
 
 export PROMPT_COMMAND="run_on_prompt_command"
-export EDITOR=$(brew --prefix)/bin/nvim
+export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
 export BAT_THEME="DarkNeon"
 export FZF_DEFAULT_COMMAND='find .'
 export FZF_HISTORY_FZF_OPTS='--pointer=-> --tiebreak=begin'
@@ -242,7 +244,7 @@ alias svi='sudoedit'
 alias sshcopyid='ssh-copy-id -i ~/.ssh/id_rsa.pub'
 alias svn='colorsvn'
 alias ave='ansible-vault edit'
-alias vi='$(brew --prefix)/bin/nvim'
+alias vi="$HOMEBREW_PREFIX/bin/nvim"
 alias nv='nvim-qt'
 alias brewup='brew upgrade; brew upgrade --cask'
 alias k='kubectl'
@@ -274,7 +276,7 @@ complete -F _man vman
 
 # Only if we are interactive.
 if [[ $- =~ "i" ]]; then
-  ([[ -x /usr/bin/fortune ]] || [[ -x $(brew --prefix)/bin/fortune ]]) && fortune
+  ([[ -x /usr/bin/fortune ]] || [[ -x "$HOMEBREW_PREFIX/bin/fortune" ]]) && fortune
 
   # Put some color in our man pages.
   export LESS_TERMCAP_mb=$(
@@ -313,9 +315,9 @@ if [[ $- =~ "i" ]]; then
   export GROFF_NO_SGR=1 # Needed for Konsole.
 fi
 
-if [[ -f $(brew --prefix)/bin/gcloud  ]]; then
-  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+if [[ -f "$HOMEBREW_PREFIX/bin/gcloud"  ]]; then
+  source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+  source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
 fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -329,14 +331,14 @@ fi
 # Ruby things:
 #
 # This keeps openssl updated with brew vs. not being updated otherwise
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-if [[ -f $(brew --prefix)/bin/chruby  ]]; then
+if [[ -f "$HOMEBREW_PREFIX/bin/chruby"  ]]; then
   source /usr/local/opt/chruby/share/chruby/chruby.sh
   source /usr/local/opt/chruby/share/chruby/auto.sh
 fi
 
-eval "$($(brew --prefix)/bin/starship init bash)"
+eval "$(starship init bash)"
 
 [[ -f "$HOME/tools/appcenter/completion.sh" ]] && source "$HOME/tools/appcenter/completion.sh"
 
