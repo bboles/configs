@@ -62,6 +62,16 @@ return {
         --   },
         -- },
         -- pickers = {}
+        defaults = {
+          -- layout_config = {
+          --   -- Set the default layout to dropdown
+          --   prompt_position = 'bottom',
+          --   height = 0.4,
+          --   width = 0.7,
+          --   preview_cutoff = 120,
+          -- },
+          layout_strategy = 'vertical',
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -110,6 +120,9 @@ return {
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- Set the highlighted selection color.
+      vim.api.nvim_set_hl(0, 'TelescopeSelection', { bg = 'DarkGreen' })
     end,
   },
 }
