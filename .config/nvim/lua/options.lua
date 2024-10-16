@@ -73,6 +73,10 @@ vim.cmd 'autocmd BufWritePost *.gitlab-ci.yml !glab ci lint %'
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
+vim.api.nvim_set_hl(0, 'TabLine', { bg = '#262626', fg = '#608B4E', ctermbg = 235, ctermfg = 65 })
+vim.api.nvim_set_hl(0, 'TabLineSel', { bg = '#608B4E', fg = '#262626', ctermbg = 65, ctermfg = 235 })
+vim.api.nvim_set_hl(0, 'TabLineFill', { bg = '#3C3C3C', fg = '#608B4E', ctermbg = 237, ctermfg = 65 })
+
 -- This makes highlights disappear as soon as you press any movement key.
 vim.on_key(function(char)
   if vim.fn.mode() == 'n' then
