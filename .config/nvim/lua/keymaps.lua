@@ -45,8 +45,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Netrw
-vim.keymap.set('n', '-', ':Explore<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- Assign the :Neogit command to '<leader>G' key in normal mode
 vim.keymap.set('n', '<leader>G', ':Neogit<CR>', { silent = true })
