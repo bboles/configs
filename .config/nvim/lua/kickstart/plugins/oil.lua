@@ -1,5 +1,8 @@
 return {
   'stevearc/oil.nvim',
+  -- Optional dependencies
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+
   config = function()
     require('oil').setup {
       default_file_explorer = true,
@@ -11,6 +14,10 @@ return {
       },
       view_options = {
         show_hidden = true,
+        sort = {
+          { 'type', 'desc' },
+          { 'name', 'asc' },
+        },
       },
       float = {
         padding = 3,
@@ -20,8 +27,5 @@ return {
         winblend = 0,
       },
     }
-    return {}
   end,
-  -- Optional dependencies
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
