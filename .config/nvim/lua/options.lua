@@ -80,6 +80,12 @@ vim.cmd 'autocmd BufWritePost *.gitlab-ci.yml !glab ci lint %'
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
+-- Check if 'rg' (Ripgrep) is executable
+if vim.fn.executable 'rg' == 1 then
+  vim.opt.grepprg = 'rg --vimgrep --smart-case --hidden'
+  vim.opt.grepformat = '%f:%l:%c:%m'
+end
+
 vim.api.nvim_set_hl(0, 'TabLine', { bg = '#262626', fg = '#608B4E', ctermbg = 235, ctermfg = 65 })
 vim.api.nvim_set_hl(0, 'TabLineSel', { bg = '#608B4E', fg = '#262626', ctermbg = 65, ctermfg = 235 })
 vim.api.nvim_set_hl(0, 'TabLineFill', { bg = '#3C3C3C', fg = '#608B4E', ctermbg = 237, ctermfg = 65 })
