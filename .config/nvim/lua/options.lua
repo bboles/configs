@@ -68,6 +68,13 @@ vim.opt.scrolloff = 10
 vim.g.netrw_liststyle = 1 -- show timestamps in listing
 vim.g.netrw_maxfilenamelen = 55 -- max chars to show in a filename
 
+-- Number of spaces that a <Tab> in the file counts for
+vim.opt.tabstop = 2
+-- Number of spaces to use for each step of (auto)indent
+vim.opt.shiftwidth = 2
+-- Use spaces instead of tabs
+vim.opt.expandtab = true
+
 -- use glab executable to lint
 vim.cmd 'autocmd BufWritePost *.gitlab-ci.yml !glab ci lint %'
 
