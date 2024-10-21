@@ -1,2 +1,4 @@
 # Search hidden files by default.
 --hidden
+--glob
+!.git
