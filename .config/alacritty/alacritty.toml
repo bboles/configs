@@ -14,16 +14,20 @@ unfocused_hollow = true
 size = 13.0
 
 [font.bold]
-family = "Edlo Nerd Font"
+family = "Iosevka Nerd Font Mono"
+style = "Bold"
 
 [font.bold_italic]
-family = "Edlo Nerd Font"
+family = "Iosevka Nerd Font Mono"
+style = "Bold Italic"
 
 [font.italic]
-family = "Edlo Nerd Font"
+family = "Iosevka Nerd Font Mono"
+style = "Italic"
 
 [font.normal]
-family = "Edlo Nerd Font"
+family = "Iosevka Nerd Font Mono"
+style = "Regular"
 
 [font.offset]
 x = 1
