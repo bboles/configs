@@ -105,4 +105,26 @@ vim.on_key(function(char)
   end
 end, vim.api.nvim_create_namespace 'auto_hlsearch')
 
+if vim.g.neovide then
+  -- register autocommand callbacks to cleverly toggle
+  -- relative numbers when scrolling, .. this works
+  -- around the issue with frames dropped in neovide
+  -- when scrolling quickly with relative numbering on
+  vim.api.nvim_create_autocmd('WinScrolled', {
+    callback = function()
+      if vim.o.relativenumber then
+        vim.cmd 'set norelativenumber'
+      end
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+    callback = function()
+      if not vim.o.relativenumber then
+        vim.cmd 'set relativenumber'
+      end
+    end,
+  })
+end
+
 -- vim: ts=2 sts=2 sw=2 et
