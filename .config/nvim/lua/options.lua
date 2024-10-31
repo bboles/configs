@@ -5,8 +5,6 @@
 
 vim.cmd 'colorscheme torte'
 
-vim.opt.guifont = { 'Iosevka Nerd Font Mono', ':h13' }
-
 -- Make sure we set a title for the window.
 vim.opt.title = true
 
