@@ -104,6 +104,11 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+  performance = {
+    rtp = {
+      paths = { '/opt/homebrew/Cellar/neovim-qt/0.2.18/nvim-qt.app/Contents/Resources/runtime' },
+    },
+  },
 })
 
 -- vim: ts=2 sts=2 sw=2 et
