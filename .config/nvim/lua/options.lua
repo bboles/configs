@@ -7,6 +7,9 @@ vim.cmd 'colorscheme torte'
 
 vim.opt.guifont = { 'Iosevka Nerd Font Mono', ':h13' }
 
+-- Make sure we set a title for the window.
+vim.opt.title = true
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
