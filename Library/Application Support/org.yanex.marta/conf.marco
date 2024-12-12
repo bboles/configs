@@ -1,0 +1,33 @@
+environment {
+    terminal "Alacritty"
+    textEditor "neovide"
+}
+
+behavior {
+    theme "Kon"
+
+    actions {
+        core.trash.confirm false
+    }
+
+    dateFormat {
+        normal "%-Y %b %d"
+    }
+}
+
+fonts {
+    actionBar [ "Iosevka Nerd Font Mono" 13 ]
+    breadcrumbs [ "Iosevka Nerd Font Mono" 13 ]
+    virtualTabs [ "Iosevka Nerd Font Mono" 13 ]
+    files [ "Iosevka Nerd Font Mono" 13 ]
+    statusBar [ "Iosevka Nerd Font Mono" 12 ]
+    tableHeader [ "Iosevka Nerd Font Mono" 12 ]
+    tabs [ "Iosevka Nerd Font Mono" 13 ]
+    preferences [ "Iosevka Nerd Font Mono" 13 ]
+}
+
+etty {
+    fonts {
+        nomal ["Iosevka Nerd Font Mono" 13]
+    }
+}
