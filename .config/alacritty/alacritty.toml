@@ -1,5 +1,3 @@
-import = ["~/src/github.com/alacritty/alacritty-theme/themes/hyper.toml"]
-
 [bell.command]
 args = ["-e", "beep"]
 program = "osascript"
@@ -33,6 +31,13 @@ style = "Regular"
 x = 1
 y = 0
 
-[shell]
+[general]
+import = ["~/src/github.com/alacritty/alacritty-theme/themes/hyper.toml"]
+live_config_reload = true
+
+[terminal]
+osc52 = "CopyPaste"
+
+[terminal.shell]
 args = ["--login"]
 program = "/opt/homebrew/bin/bash"
