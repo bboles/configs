@@ -1,5 +1,7 @@
 font-family                = "IosevkaTerm Nerd Font Mono"
 font-thicken               = true
+window-height              = 81
+window-width               = 163
 cursor-style-blink         = false
 shell-integration-features = no-cursor
 quick-terminal-position    = center
