@@ -1,0 +1,31 @@
+# Hyper theme for Ghostty
+# Converted from
+# https://github.com/alacritty/alacritty-theme/blob/aff9d111d43e1ad5c22d4e27fc1c98176e849fb9/themes/hyper.toml
+
+# Default colors
+background   = #000000
+foreground   = #ffffff
+
+# Cursor colors
+cursor-color = #ffffff
+cursor-text  = #F81CE5
+
+# Normal colors
+palette      = 0=#000000
+palette      = 1=#fe0100
+palette      = 2=#33ff00
+palette      = 3=#feff00
+palette      = 4=#0066ff
+palette      = 5=#cc00ff
+palette      = 6=#00ffff
+palette      = 7=#d0d0d0
+
+# Bright colors
+palette      = 8=#808080
+palette      = 9=#fe0100
+palette      = 10=#33ff00
+palette      = 11=#feff00
+palette      = 12=#0066ff
+palette      = 13=#cc00ff
+palette      = 14=#00ffff
+palette      = 15=#FFFFFF
