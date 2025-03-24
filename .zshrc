@@ -73,6 +73,10 @@ fpath+=~/.zsh/functions
 fpath+="$HOMEBREW_PREFIX/share/zsh-completions"
 path+=~/bin
 
+eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
+eval "$(direnv hook zsh)"
+
 # Autoload all functions from specific contexts
 # nonomatch prevents errors if the path is not a valid function.
 setopt nonomatch
@@ -88,10 +92,6 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-
-eval "$(starship init zsh)"
-eval "$(atuin init zsh)"
-eval "$(direnv hook zsh)"
 
 export FZF_PATH="$HOMEBREW_PREFIX/opt/fzf"
 source ~/src/github.com/unixorn/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
