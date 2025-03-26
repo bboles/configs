@@ -28,21 +28,36 @@ vim.opt.showmode = false
 --   vim.opt.clipboard = 'unnamedplus'
 -- end)
 
--- Use osc52 as clipboard provider
-local function paste()
-  return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
+-- Check if we're in an SSH session
+local function is_ssh()
+  return vim.env.SSH_CONNECTION ~= nil or vim.env.SSH_CLIENT ~= nil
 end
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-    ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-  },
-  paste = {
-    ['+'] = paste,
-    ['*'] = paste,
-  },
-}
+-- Configure clipboard based on connection type
+if is_ssh() then
+  -- Use osc52 as clipboard provider if we're connecting via ssh.
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
+  end
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+      ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+    },
+    paste = {
+      ['+'] = paste,
+      ['*'] = paste,
+    },
+  }
+
+  print 'SSH connection detected: Using OSC52 clipboard'
+else
+  -- Use system clipboard when local
+  -- This is optional - Neovim will use system clipboard by default
+  -- if you don't set vim.g.clipboard
+  print 'Local session: Using system clipboard'
+end
+
 -- To ALWAYS use the clipboard for ALL operations
 -- (instead of interacting with the "+" and/or "*" registers explicitly):
 vim.opt.clipboard = 'unnamedplus'
