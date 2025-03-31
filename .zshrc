@@ -49,6 +49,7 @@ eval "$(direnv hook zsh)"
 setopt nonomatch
 autoload -Uz $^fpath/*(.:t)
 
+source ~/.zsh/functions/atuin-setup
 atuin-setup
 # The -u (unsafe) is to ignore permissions issues.
 compinit -u
