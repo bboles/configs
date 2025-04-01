@@ -7,6 +7,10 @@ setopt AUTO_CD
 setopt CORRECT
 setopt CORRECT_ALL
 
+setopt MENU_COMPLETE
+setopt AUTO_LIST
+setopt COMPLETE_IN_WORD
+
 # Ensure fpath includes our custom functions directory
 if [[ ${fpath[(i)~/.zsh/functions]} -gt ${#fpath} ]]; then
   fpath=(~/.zsh/functions "${fpath[@]}")
@@ -27,11 +31,7 @@ zstyle ':completion:*' menu select
 # Enable make target completion
 zstyle ':completion:*:make:*:targets' call-command true
 zstyle ':completion:*:*:make:*' tag-order 'targets' 
-# Enable remote path completion for SSH
-# zstyle ':completion:*:*:ssh:*' file-patterns \
-#     '*(~|-.):remote-directories' '*:all-files'
-# zstyle ':completion:*:*:scp:*' file-patterns \
-#     '*(~|-.):remote-directories' '*:all-files'
+# zstyle ':completion:*' file-list all
 
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -85,6 +85,9 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Make up-arrow consistent on both linux and macos.
+bindkey '^[[A' up-line-or-history
 
 source ~/src/github.com/unixorn/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
 source ~/src/github.com/z-shell/zui/zui.plugin.zsh
