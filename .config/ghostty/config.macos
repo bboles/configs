@@ -1,0 +1,2 @@
+command                    = /opt/homebrew/bin/zsh -i
+initial-command            = /opt/homebrew/bin/zsh -i

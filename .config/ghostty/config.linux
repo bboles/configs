@@ -1,0 +1,2 @@
+command                    = /home/linuxbrew/.linuxbrew/bin/zsh -i
+initial-command            = /home/linuxbrew/.linuxbrew/bin/zsh -i
