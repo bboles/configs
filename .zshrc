@@ -75,8 +75,8 @@ eval "$(direnv hook zsh)"
 setopt nonomatch
 autoload -Uz $^fpath/*(.:t)
 
-source ~/.zsh/functions/atuin-setup
-atuin-setup
+# source ~/.zsh/functions/atuin-setup
+# atuin-setup
 
 zle -N edit-command-line-exec
 bindkey -M vicmd 'v' edit-command-line-exec
@@ -87,7 +87,7 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Make up-arrow consistent on both linux and macos.
-bindkey '^[[A' up-line-or-history
+# bindkey '^[[A' up-line-or-history
 
 source ~/src/github.com/unixorn/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
 source ~/src/github.com/z-shell/zui/zui.plugin.zsh
@@ -97,15 +97,29 @@ source ~/src/github.com/z-shell/zbrowse/zbrowse.plugin.zsh
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 source "$HOMEBREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+# function zvm_after_init() {
+#   # Define your widget.
+#   zle -N fzf-atuin-history-widget
+# 
+#   # Bind in both insert and normal mode using zvm_bindkey.
+#   zvm_bindkey viins '^R' fzf-atuin-history-widget
+#   zvm_bindkey vicmd '^R' fzf-atuin-history-widget
+# 
+#   # We just need to rehash to ensure latest completions are available
+#   rehash
+# }
 function zvm_after_init() {
-  # Define your widget.
-  zle -N fzf-atuin-history-widget
+  # bindkey '^r' atuin-search
+  # bindkey '^[[A' atuin-up-search
+  # bindkey '^[OA' atuin-up-search
 
-  # Bind in both insert and normal mode using zvm_bindkey.
-  zvm_bindkey viins '^R' fzf-atuin-history-widget
-  zvm_bindkey vicmd '^R' fzf-atuin-history-widget
+  zvm_bindkey viins '^r' atuin-search
+  zvm_bindkey vicmd '^r' atuin-search
+  zvm_bindkey viins '^[[A' atuin-up-search
+  zvm_bindkey vicmd '^[[A' atuin-up-search
+  zvm_bindkey viins '^[OA' atuin-up-search
+  zvm_bindkey vicmd '^[OA' atuin-up-search
 
-  # We just need to rehash to ensure latest completions are available
   rehash
 }
 
