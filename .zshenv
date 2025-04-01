@@ -2,7 +2,8 @@
 if [[ "${OSTYPE}" == 'linux-gnu' ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 else
-  eval "$(brew shellenv)"
+  # We are on macos.
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 export FZF_PATH="$HOMEBREW_PREFIX/opt/fzf"
