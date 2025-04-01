@@ -7,11 +7,37 @@ setopt AUTO_CD
 setopt CORRECT
 setopt CORRECT_ALL
 
+# Ensure fpath includes our custom functions directory
+if [[ ${fpath[(i)~/.zsh/functions]} -gt ${#fpath} ]]; then
+  fpath=(~/.zsh/functions "${fpath[@]}")
+fi
+
+# First, ensure fpath is set correctly
+fpath+=("$HOMEBREW_PREFIX/share/zsh-completions")
+
+# Load completion system
+autoload -Uz compinit
+compinit -u
+
 # Colors for completions
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*:prefix:*' add-space true
 zstyle ':completion:*' menu select
+# Enable make target completion
+zstyle ':completion:*:make:*:targets' call-command true
+zstyle ':completion:*:*:make:*' tag-order 'targets' 
+# Enable remote path completion for SSH
+# zstyle ':completion:*:*:ssh:*' file-patterns \
+#     '*(~|-.):remote-directories' '*:all-files'
+# zstyle ':completion:*:*:scp:*' file-patterns \
+#     '*(~|-.):remote-directories' '*:all-files'
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
 
 zmodload zsh/complist
 
@@ -51,8 +77,6 @@ autoload -Uz $^fpath/*(.:t)
 
 source ~/.zsh/functions/atuin-setup
 atuin-setup
-# The -u (unsafe) is to ignore permissions issues.
-compinit -u
 
 zle -N edit-command-line-exec
 bindkey -M vicmd 'v' edit-command-line-exec
@@ -77,6 +101,9 @@ function zvm_after_init() {
   # Bind in both insert and normal mode using zvm_bindkey.
   zvm_bindkey viins '^R' fzf-atuin-history-widget
   zvm_bindkey vicmd '^R' fzf-atuin-history-widget
+
+  # We just need to rehash to ensure latest completions are available
+  rehash
 }
 
 # These need to be at the end.
