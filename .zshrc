@@ -97,29 +97,16 @@ source ~/src/github.com/z-shell/zbrowse/zbrowse.plugin.zsh
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 source "$HOMEBREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
-# function zvm_after_init() {
-#   # Define your widget.
-#   zle -N fzf-atuin-history-widget
-# 
-#   # Bind in both insert and normal mode using zvm_bindkey.
-#   zvm_bindkey viins '^R' fzf-atuin-history-widget
-#   zvm_bindkey vicmd '^R' fzf-atuin-history-widget
-# 
-#   # We just need to rehash to ensure latest completions are available
-#   rehash
-# }
-function zvm_after_init() {
-  # bindkey '^r' atuin-search
-  # bindkey '^[[A' atuin-up-search
-  # bindkey '^[OA' atuin-up-search
 
+# This function will run after zsh-vi-mode initializes.  We can use this to
+# overwrite with our own settings.
+function zvm_after_init() {
   zvm_bindkey viins '^r' atuin-search
   zvm_bindkey vicmd '^r' atuin-search
-  zvm_bindkey viins '^[[A' atuin-up-search
-  zvm_bindkey vicmd '^[[A' atuin-up-search
-  zvm_bindkey viins '^[OA' atuin-up-search
-  zvm_bindkey vicmd '^[OA' atuin-up-search
 
+  bindkey -M vicmd 'k' history-search-backward
+
+  # This will ensure our latest completions are available.
   rehash
 }
 
