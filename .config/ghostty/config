@@ -12,9 +12,8 @@ clipboard-write            = allow
 copy-on-select             = true
 mouse-hide-while-typing    = true
 link-url                   = true
-# Only one or the other of these files should be used.
-config-file                = ?config.linux
-config-file                = ?config.macos
+# We can soft link to this file for optional settings.
+config-file                = ?config.os
 # custom-shader              = ghostty-shaders/cubes.glsl
 # custom-shader              = ghostty-shaders/inside-the-matrix.glsl
 # custom-shader              = ghostty-shaders/matrix-hallway.glsl
