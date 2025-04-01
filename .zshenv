@@ -31,9 +31,9 @@ export FZF_DEFAULT_OPTS="$(printf '%s ' "${fzf_default_opts[@]}")"
 
 # Path modifications (needed for all sessions)
 export cdpath=(. ~ ~/src/)
-fpath+=~/.zsh/functions
-fpath+="$HOMEBREW_PREFIX/share/zsh-completions"
-path+=~/bin
+fpath=(~/.zsh/functions "${fpath[@]}")
+fpath=("$HOMEBREW_PREFIX/share/zsh-completions" "${fpath[@]}")
+path=(~/bin "${path[@]}")
 
 # OrbStack (if needed for non-interactive sessions)
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
