@@ -9,6 +9,9 @@ fi
 export FZF_PATH="$HOMEBREW_PREFIX/opt/fzf"
 export MANPAGER='nvim +Man!'
 export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
+export HISTFILE="$HOME/.zsh_history"
+export SAVEHIST=50000
+export HISTSIZE=10000000
 
 # FZF settings (must be available for scripts)
 fzf_default_opts=(
