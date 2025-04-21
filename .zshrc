@@ -1,15 +1,19 @@
 # Enable vi mode.
 bindkey -v
 
-# Use bash-like tab completion.
-setopt GLOB_COMPLETE
-setopt AUTO_CD
-setopt CORRECT
-setopt CORRECT_ALL
-
-setopt MENU_COMPLETE
-setopt AUTO_LIST
-setopt COMPLETE_IN_WORD
+setopt AUTO_CD            # Change directories without typing 'cd'
+setopt CORRECT            # Command spelling correction
+setopt GLOB_COMPLETE      # Completion of globs
+setopt COMPLETE_IN_WORD   # Complete from both ends of a word
+setopt NO_MENU_COMPLETE   # Don't automatically select first match
+setopt AUTO_MENU          # Show menu on second tab
+# setopt bash_auto_list     # Show completions like Bash after tab
+setopt NO_LIST_BEEP       # Don't beep when completion is shown
+setopt LIST_TYPES         # Show file types in completions
+setopt HIST_VERIFY        # Show history expansion for editing
+setopt AUTO_PARAM_SLASH   # Add a / when a dir is completed
+setopt COMPLETE_IN_WORD   # Cursor stays in the word instead of moving to the end
+setopt NO_LIST_ROWS_FIRST # Nav by column instead of row
 
 # Ensure fpath includes our custom functions directory
 if [[ ${fpath[(i)~/.zsh/functions]} -gt ${#fpath} ]]; then
@@ -22,6 +26,8 @@ fpath+=("$HOMEBREW_PREFIX/share/zsh-completions")
 # Load completion system
 autoload -Uz compinit
 compinit -u
+
+zstyle ':completion:*' completer _extensions _complete _approximate _ignored
 
 # Colors for completions
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -38,6 +44,14 @@ zstyle ':completion:*:descriptions' format '%B%d%b'
 zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/zsh/.zcompcache"
+
+# Match partial words.
+zstyle ':completion:*' matcher-list '' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# Turn '//' into '/'.
+zstyle ':completion:*' squeeze-slashes true
 
 zmodload zsh/complist
 
@@ -86,6 +100,13 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
+bindkey '^[[Z' reverse-menu-complete  # Shift+Tab for backward navigation
+
+# bindkey -M vicmd "k" up-line-or-history
+# bindkey -M vicmd "j" down-line-or-history
+# bindkey -M viins "^[[A" up-line-or-history
+# bindkey -M viins "^[[B" down-line-or-history
+
 # Make up-arrow consistent on both linux and macos.
 # bindkey '^[[A' up-line-or-history
 
@@ -104,7 +125,8 @@ function zvm_after_init() {
   zvm_bindkey viins '^r' atuin-search
   zvm_bindkey vicmd '^r' atuin-search
 
-  bindkey -M vicmd 'k' history-search-backward
+  # bindkey -M vicmd 'k' history-search-backward
+  bindkey -M vicmd 'k' up-line-or-history
 
   # This will ensure our latest completions are available.
   rehash
