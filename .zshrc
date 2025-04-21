@@ -138,3 +138,8 @@ source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$HOMEBREW_PREFIX/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh"
 
 ([[ -x /usr/bin/fortune ]] || [[ -x "$HOMEBREW_PREFIX/bin/fortune" ]]) && fortune
+
+if [[ "${OSTYPE}" == 'linux-gnu' ]]; then
+    keychain id_ed25519
+      . ~/.keychain/`uname -n`-sh
+fi
