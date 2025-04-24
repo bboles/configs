@@ -143,3 +143,14 @@ if [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     keychain id_ed25519
       . ~/.keychain/`uname -n`-sh
 fi
+
+if [[ "${TERM}" == *tmux* ]]; then
+  echo "Nested tmux detected. Setting options."
+  tmux set -g prefix C-h 2>/dev/null
+  tmux bind h send-prefix 2>/dev/null
+  tmux bind C-h last-window 2>/dev/null
+  tmux set -as terminal-features ",screen*:clipboard" 2>/dev/null
+  # The `terminal-features` setting above is so nested tmux will pass the
+  # clipboard to the outer tmux/system clipboard via osc52. 'screen' here
+  # references the terminal type.
+fi
