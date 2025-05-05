@@ -146,6 +146,8 @@ fi
 
 if [[ "${TERM}" == *tmux* ]]; then
   echo "Nested tmux detected. Setting options."
+  # Make sure tmux is started.
+  tmux start-server
   tmux set -g prefix C-h 2>/dev/null
   tmux bind h send-prefix 2>/dev/null
   tmux bind C-h last-window 2>/dev/null
