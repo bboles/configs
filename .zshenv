@@ -41,3 +41,6 @@ path=(~/bin "${path[@]}")
 
 # OrbStack (if needed for non-interactive sessions)
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
+# uv
+export PATH="/Users/brandon.boles@tylertech.com/.local/bin:$PATH"
