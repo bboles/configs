@@ -43,4 +43,4 @@ path=(~/bin "${path[@]}")
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # uv
-export PATH="/Users/brandon.boles@tylertech.com/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
