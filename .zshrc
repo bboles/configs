@@ -144,7 +144,7 @@ if [[ "${OSTYPE}" == 'linux-gnu' ]]; then
       . ~/.keychain/`uname -n`-sh
 fi
 
-if [[ "${TERM}" == *tmux* ]]; then
+if ([[ "${TERM}" == *tmux* ]] && [[ "${OSTYPE}" == 'linux-gnu' ]]); then
   echo "Nested tmux detected. Setting options."
   # Make sure tmux is started.
   tmux start-server
