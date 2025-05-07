@@ -1,5 +1,5 @@
 environment {
-    terminal "Alacritty"
+    terminal "Ghostty"
     textEditor "neovide"
 }
 
@@ -13,6 +13,11 @@ behavior {
     dateFormat {
         normal "%-Y %b %d"
     }
+
+    quickSelect {
+        activateOnAnyCharacter false
+    }
+
 }
 
 fonts {
@@ -30,4 +35,15 @@ etty {
     fonts {
         nomal ["Iosevka Nerd Font Mono" 13]
     }
+}
+
+keyBindings {
+    "h" "core.move.left"
+    "l" "core.move.right"
+    "k" "core.move.up"
+    "j" "core.move.down"
+    "Ctrl+f" "core.move.page.down"
+    "Ctrl+b" "core.move.page.up"
+    "Ctrl+h" "core.back"
+    "Ctrl+l" "core.forward"
 }
