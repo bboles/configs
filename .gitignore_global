@@ -38,5 +38,5 @@ __pycache__/
 tmp
 
 .vagrant
-
 .gitlab-ci-local
+.aider*
