@@ -46,4 +46,5 @@ keyBindings {
     "Ctrl+b" "core.move.page.up"
     "Ctrl+h" "core.back"
     "Ctrl+l" "core.forward"
+    "-" "core.go.up"
 }
