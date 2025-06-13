@@ -178,6 +178,42 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
+            },
+          },
+          capabilities = {
+            textDocument = {
+              formatting = {
+                dynamicRegistration = true,
+              },
+            },
+          },
+          -- Set up auto-formatting on save
+          on_attach = function(client, bufnr)
+            -- Enable formatting via gopls
+            client.server_capabilities.documentFormattingProvider = true
+
+            -- Auto-format on save
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format {
+                  async = false, -- Make it synchronous to ensure formatting completes before save
+                  filter = function(c)
+                    return c.name == 'gopls' -- Only use gopls for formatting
+                  end,
+                }
+              end,
+            })
+          end,
+        },
         yamlls = {
           settings = {
             yaml = {
