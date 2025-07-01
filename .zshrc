@@ -72,7 +72,7 @@ setopt HIST_FIND_NO_DUPS
 # Removes blank lines from history.
 setopt HIST_REDUCE_BLANKS
 
-alias ls='lsd'
+alias ls='lsd --group-directories-first'
 alias l='ls -al'
 alias lh='ls -alh'
 alias ll='ls -l'
