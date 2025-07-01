@@ -15,8 +15,7 @@ return {
       view_options = {
         show_hidden = true,
         sort = {
-          { 'type', 'desc' },
-          { 'name', 'asc' },
+          { 'type', 'asc' },
         },
       },
       float = {
