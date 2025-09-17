@@ -12,6 +12,7 @@ export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
 export HISTFILE="$HOME/.zsh_history"
 export SAVEHIST=50000
 export HISTSIZE=10000000
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgrep.txt"
 
 # FZF settings (must be available for scripts)
 fzf_default_opts=(
