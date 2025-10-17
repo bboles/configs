@@ -79,6 +79,17 @@ alias ll='ls -l'
 alias lt='ls -altr'
 alias brewup='brew upgrade; brew upgrade --cask'
 alias psef='ps -ef | grep'
+alias rsyncp='rsync -ahvP'
+
+bak() {
+  DATESTAMP=$(date "+%Y%m%d.%H%M%S")
+  cp $1 $1.$DATESTAMP
+}
+
+mkcd() {
+  mkdir -p "$*"
+  cd "$*"
+}
 
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
