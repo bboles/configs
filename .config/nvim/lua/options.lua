@@ -5,6 +5,9 @@
 
 vim.cmd 'colorscheme torte'
 
+-- Set default border.
+vim.o.winborder = ''
+
 -- Make sure we set a title for the window.
 vim.opt.title = true
 
