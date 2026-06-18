@@ -79,6 +79,14 @@ alias ll='ls -l'
 alias lt='ls -altr'
 alias brewup='brew upgrade; brew upgrade --cask'
 alias psef='ps -ef | grep'
+
+# kubectl: alias `k` and make tab completion work for it too.
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+  alias k='kubectl'
+  compdef __start_kubectl k
+fi
+
 alias rsyncp='rsync -ahvP'
 
 bak() {
