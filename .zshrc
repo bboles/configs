@@ -99,6 +99,112 @@ mkcd() {
   cd "$*"
 }
 
+awsp() {
+  # `aws configure list-profiles` silently drops profile names containing
+  # spaces, so parse ~/.aws/config directly instead. Pair each profile with
+  # its account id (from sso_account_id, or parsed out of role_arn) in a
+  # single awk pass -- shelling out to `aws configure get` per profile takes
+  # 10+ seconds with dozens of profiles.
+  local config_file="${AWS_CONFIG_FILE:-$HOME/.aws/config}"
+  local entries
+  entries=$(awk '
+    /^\[default\]$/ {
+      current = "default"
+      if (!(current in seen)) { seen[current] = 1; order[++n] = current }
+      accounts[current] = ""
+      mfa[current] = 0
+      next
+    }
+    /^\[profile / {
+      prof = $0
+      sub(/^\[profile /, "", prof)
+      sub(/\]$/, "", prof)
+      current = prof
+      if (!(current in seen)) { seen[current] = 1; order[++n] = current }
+      accounts[current] = ""
+      mfa[current] = 0
+      next
+    }
+    /^\[/ { current = ""; next }
+    current == "" { next }
+    /^[ \t]*sso_account_id[ \t]*=/ {
+      val = $0
+      sub(/^[ \t]*sso_account_id[ \t]*=[ \t]*/, "", val)
+      gsub(/[ \t]+$/, "", val)
+      accounts[current] = val
+      next
+    }
+    /^[ \t]*mfa_serial[ \t]*=/ {
+      mfa[current] = 1
+      if (accounts[current] == "") {
+        val = $0
+        sub(/^[ \t]*mfa_serial[ \t]*=[ \t]*/, "", val)
+        gsub(/[ \t]+$/, "", val)
+        cnt = split(val, arnparts, ":")
+        if (cnt >= 5) accounts[current] = arnparts[5]
+      }
+      next
+    }
+    /^[ \t]*role_arn[ \t]*=/ {
+      if (accounts[current] == "") {
+        val = $0
+        sub(/^[ \t]*role_arn[ \t]*=[ \t]*/, "", val)
+        gsub(/[ \t]+$/, "", val)
+        cnt = split(val, arnparts, ":")
+        if (cnt >= 5) accounts[current] = arnparts[5]
+      }
+    }
+    END {
+      # Find the longest profile name so the account column can be padded to
+      # a fixed start position -- otherwise fzf joins fields with a literal
+      # tab, which snaps to 8-column tab stops and misaligns the columns.
+      maxlen = 0
+      for (i = 1; i <= n; i++)
+        if (length(order[i]) > maxlen) maxlen = length(order[i])
+      for (i = 1; i <= n; i++) {
+        p = order[i]
+        # Fields: profile, account, mfa, then a pre-aligned display column.
+        display = sprintf("%-*s  %s", maxlen, p, accounts[p])
+        print p "\t" accounts[p] "\t" mfa[p] "\t" display
+      }
+    }
+  ' "$config_file")
+
+  local selection
+  # Display only the pre-aligned 4th field; the tab-delimited fields behind it
+  # are still present in $selection for parsing below.
+  selection=$(printf '%s\n' "$entries" | fzf --delimiter='\t' --with-nth=4)
+
+  [[ -z "$selection" ]] && return
+
+  local -a parts
+  parts=("${(@ps:\t:)selection}")
+  local profile="${parts[1]}"
+  # The third tab-delimited field is 1 when the profile has an mfa_serial.
+  local has_mfa="${parts[3]}"
+
+  if [[ "$has_mfa" == "1" ]]; then
+    # IAM user profile with MFA: hand off to aws-vault, which prompts for the
+    # MFA token and starts a subshell with temporary credentials exported.
+    echo "Launching aws-vault subshell for profile: $profile"
+    aws-vault exec "$profile"
+    return
+  fi
+
+  if ! aws sts get-caller-identity --profile "$profile" >/dev/null 2>&1; then
+    local sso_session
+    sso_session=$(aws configure get sso_session --profile "$profile" 2>/dev/null)
+    echo "No valid SSO session for '$profile'; running 'aws sso login'..."
+    if [[ -n "$sso_session" ]]; then
+      aws sso login --sso-session "$sso_session" || return 1
+    else
+      aws sso login --profile "$profile" || return 1
+    fi
+  fi
+  export AWS_PROFILE="$profile"
+  echo "Switched to AWS profile: $AWS_PROFILE"
+}
+
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(direnv hook zsh)"
@@ -175,3 +281,8 @@ if ([[ "${TERM}" == *tmux* ]] && [[ "${OSTYPE}" == 'linux-gnu' ]] && [[ -n "${SS
   # clipboard to the outer tmux/system clipboard via osc52. 'screen' here
   # references the terminal type.
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/Brandon.Boles/.lmstudio/bin"
+# End of LM Studio CLI section
+
