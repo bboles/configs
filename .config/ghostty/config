@@ -34,7 +34,7 @@ keybind                     = super+digit_6=unbind
 keybind                     = super+digit_7=unbind
 keybind                     = super+digit_8=unbind
 
-# Activate the vim key table with Alt+V.
+# Activate the vim key table with Ctrl-a.
 keybind                     = ctrl+a=activate_key_table:vim
 keybind                     = vim/
 
