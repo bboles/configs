@@ -18,6 +18,11 @@ behavior {
         activateOnAnyCharacter false
     }
 
+    table {
+        defaults {
+            showHiddenFiles true    
+        }
+    }
 }
 
 fonts {
