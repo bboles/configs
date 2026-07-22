@@ -1,21 +1,95 @@
-font-family                = "IosevkaTerm Nerd Font Mono"
-font-thicken               = true
-window-height              = 81
-window-width               = 163
-cursor-style-blink         = false
-shell-integration-features = no-cursor
-quick-terminal-position    = center
-theme                      = "hyper"
-bold-is-bright             = true
-clipboard-read             = allow
-clipboard-write            = allow
-copy-on-select             = true
-mouse-hide-while-typing    = true
-link-url                   = true
+font-family                 = "Iosevka Nerd Font Mono"
+font-thicken                = true
+window-height               = 81
+window-width                = 163
+cursor-style-blink          = false
+shell-integration-features  = no-cursor,sudo,ssh-terminfo,ssh-env
+quick-terminal-position     = center
+theme                       = "hyper"
+bold-is-bright              = true
+clipboard-read              = allow
+clipboard-write             = allow
+copy-on-select              = true
+mouse-hide-while-typing     = true
+link-url                    = true
+confirm-close-surface       = always
 # We can soft link to this file for optional settings.
-config-file                = ?config.os
-# custom-shader              = ghostty-shaders/cubes.glsl
-# custom-shader              = ghostty-shaders/inside-the-matrix.glsl
-# custom-shader              = ghostty-shaders/matrix-hallway.glsl
-# custom-shader              = ghostty-shaders/underwater.glsl
-# custom-shader              = ghostty-shaders/water.glsl
+config-file                 = ?config.os
+
+# Turn off these defaults because they clash with our config.
+keybind                     = super+1=unbind
+keybind                     = super+2=unbind
+keybind                     = super+3=unbind
+keybind                     = super+4=unbind
+keybind                     = super+5=unbind
+keybind                     = super+6=unbind
+keybind                     = super+7=unbind
+keybind                     = super+8=unbind
+keybind                     = super+digit_1=unbind
+keybind                     = super+digit_2=unbind
+keybind                     = super+digit_3=unbind
+keybind                     = super+digit_4=unbind
+keybind                     = super+digit_5=unbind
+keybind                     = super+digit_6=unbind
+keybind                     = super+digit_7=unbind
+keybind                     = super+digit_8=unbind
+
+# Activate the vim key table with Alt+V.
+keybind                     = ctrl+a=activate_key_table:vim
+keybind                     = vim/
+
+# Define the Vim key table rules.
+keybind                     = vim/escape=deactivate_key_table
+keybind                     = vim/q=deactivate_key_table
+
+# Scrollback movement.
+keybind                     = vim/ctrl+k=scroll_page_lines:-1
+keybind                     = vim/ctrl+j=scroll_page_lines:1
+keybind                     = vim/ctrl+b=scroll_page_up
+keybind                     = vim/ctrl+f=scroll_page_down
+
+# Full jumps.
+keybind                     = vim/g=scroll_to_top
+keybind                     = vim/shift+g=scroll_to_bottom
+
+# Search.
+keybind                     = vim/slash=start_search
+# keybind        =  vim/n=navigate_search
+
+# Dump scrollback and screen contents into a temp file and open it.
+keybind                     = vim/v=write_scrollback_file:paste,plain
+keybind                     = chain=write_screen_file:open,plain
+
+# Ported tmux bindings.
+keybind                     = vim/c=new_tab
+keybind                     = vim/n=next_tab
+keybind                     = vim/p=previous_tab
+keybind                     = vim/1=goto_tab:1
+keybind                     = vim/2=goto_tab:2
+keybind                     = vim/3=goto_tab:3
+keybind                     = vim/4=goto_tab:4
+keybind                     = vim/5=goto_tab:6
+keybind                     = vim/6=goto_tab:7
+keybind                     = vim/7=goto_tab:8
+keybind                     = vim/8=goto_tab:9
+keybind                     = vim/0=goto_tab:10
+
+keybind                     = vim/\=new_split:right
+keybind                     = vim/-=new_split:down
+keybind                     = vim/h=goto_split:left
+keybind                     = vim/l=goto_split:right
+keybind                     = vim/j=goto_split:down
+keybind                     = vim/k=goto_split:up
+keybind                     = vim/a=goto_split:previous
+keybind                     = vim/z=toggle_split_zoom
+
+split-divider-color         = green
+unfocused-split-fill        = DarkSlateGrey
+
+macos-titlebar-style        = transparent
+macos-icon                  = custom-style
+macos-icon-ghost-color      = purple
+macos-icon-screen-color     = green
+macos-icon-frame            = plastic
+
+# vim: set syntax=toml :
