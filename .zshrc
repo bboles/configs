@@ -79,6 +79,8 @@ alias ll='ls -l'
 alias lt='ls -altr'
 alias brewup='brew upgrade; brew upgrade --cask'
 alias psef='ps -ef | grep'
+# Make fd search hidden files.
+alias fd='fd -H'
 
 # kubectl: alias `k` and make tab completion work for it too.
 if command -v kubectl >/dev/null 2>&1; then
