@@ -57,6 +57,8 @@ require('lazy').setup({
 
   require 'kickstart/plugins/fugitive-gitlab',
 
+  require 'kickstart/plugins/rhubarb',
+
   require 'kickstart/plugins/context',
 
   require 'kickstart/plugins/nvim-web-devicons',
