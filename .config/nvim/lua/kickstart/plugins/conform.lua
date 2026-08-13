@@ -20,9 +20,11 @@ return {
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true, sh = true, bash = true, zsh = true, yaml = true }
+        -- Compound filetypes (e.g. `yaml.ghaction`) should honor the base filetype too.
+        local ft = vim.bo[bufnr].filetype:gsub('%..*', '')
         return {
           timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+          lsp_fallback = not disable_filetypes[ft],
         }
       end,
       formatters_by_ft = {

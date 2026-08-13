@@ -215,15 +215,27 @@ return {
           end,
         },
         yamlls = {
+          -- `yaml.ghaction` is set by lua/filetypes.lua for GitHub Actions files.
+          filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.ghaction' },
           settings = {
             yaml = {
               schemaStore = {
                 url = 'https://www.schemastore.org/api/json/catalog.json',
                 enable = true,
               },
-              -- Recognize reference tags in gitlab pipeline configs.
               schemas = {
-                ['https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = { 'ci/*.yml', '.gitlab-ci.yml' },
+                -- Recognize reference tags in gitlab pipeline configs.
+                -- NOTE: use the gitlab-foss mirror, this is the URL SchemaStore
+                -- publishes; the gitlab-org/gitlab one is blocked by Cloudflare.
+                ['https://gitlab.com/gitlab-org/gitlab-foss/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = {
+                  '.gitlab-ci.{yml,yaml}',
+                  '*.gitlab-ci.{yml,yaml}',
+                  '/ci/**/*.{yml,yaml}',
+                  '/.gitlab/ci/**/*.{yml,yaml}',
+                },
+                -- GitHub Actions workflows and (composite) actions.
+                ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*.{yml,yaml}',
+                ['https://json.schemastore.org/github-action.json'] = '/**/action.{yml,yaml}',
               },
             },
           },
@@ -261,17 +273,18 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      -- Apply our per-server overrides on top of the defaults shipped by
+      -- nvim-lspconfig. NOTE: mason-lspconfig v2 dropped support for the old
+      -- `handlers = { ... }` table, so the config has to go through
+      -- `vim.lsp.config()` instead (`:help lsp-config`).
+      vim.lsp.config('*', { capabilities = capabilities })
+      for server_name, server in pairs(servers) do
+        vim.lsp.config(server_name, server)
+      end
+
+      -- mason-lspconfig automatically enables every server installed by mason.
       require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
+        automatic_enable = true,
       }
     end,
   },
