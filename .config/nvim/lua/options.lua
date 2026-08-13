@@ -145,19 +145,37 @@ if vim.g.neovide then
   -- relative numbers when scrolling, .. this works
   -- around the issue with frames dropped in neovide
   -- when scrolling quickly with relative numbering on
+  -- NOTE: while scrolling we drop 'relativenumber' but force 'number' on, so the
+  -- number column never collapses (it used to vanish in windows such as :help
+  -- where 'number' is off and only 'relativenumber' was drawing the column).
+  local scroll_state = {}
+
   vim.api.nvim_create_autocmd('WinScrolled', {
     callback = function()
-      if vim.o.relativenumber then
-        vim.cmd 'set norelativenumber'
+      local win = vim.api.nvim_get_current_win()
+      if vim.wo[win].relativenumber and not scroll_state[win] then
+        scroll_state[win] = { number = vim.wo[win].number }
+        vim.wo[win].relativenumber = false
+        vim.wo[win].number = true
       end
     end,
   })
 
   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
     callback = function()
-      if not vim.o.relativenumber then
-        vim.cmd 'set relativenumber'
+      local win = vim.api.nvim_get_current_win()
+      local saved = scroll_state[win]
+      if saved then
+        scroll_state[win] = nil
+        vim.wo[win].relativenumber = true
+        vim.wo[win].number = saved.number
       end
+    end,
+  })
+
+  vim.api.nvim_create_autocmd('WinClosed', {
+    callback = function(args)
+      scroll_state[tonumber(args.match)] = nil
     end,
   })
 end
