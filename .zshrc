@@ -207,6 +207,11 @@ awsp() {
   echo "Switched to AWS profile: $AWS_PROFILE"
 }
 
+# Add issue to the current sprint. Assumes only one sprint is active.
+jira-sprint-add() {
+  jira sprint add "$(jira sprint list --state active --plain --no-headers --columns id | head -1)" "$@"
+}
+
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(direnv hook zsh)"
