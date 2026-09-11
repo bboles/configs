@@ -49,7 +49,9 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
+        -- `noselect` = nothing is pre-selected, so the *first* <Tab> lands on
+        -- entry 1 instead of skipping to entry 2.
+        completion = { completeopt = 'menu,menuone,noselect' },
 
         -- Have the menu appear above or below depending where the cursor is.
         view = {
@@ -78,8 +80,30 @@ return {
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
           ['<CR>'] = cmp.mapping.confirm { select = true },
-          ['<Tab>'] = cmp.mapping.select_next_item(),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+
+          -- <Tab>: first press selects (and inserts) the current entry,
+          -- each further press moves to the next entry.
+          -- `SelectBehavior.Insert` is what writes the text into the buffer,
+          -- so you no longer need <C-y> just to get the word in.
+          -- (<C-y>/<CR> still *confirm*: auto-import + snippet expansion.)
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item { behavior = cmp.SelectBehavior.Insert }
+            elseif luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item { behavior = cmp.SelectBehavior.Insert }
+            elseif luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
