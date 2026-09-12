@@ -271,7 +271,14 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      -- NOTE: `ensure_installed` only guarantees a tool is *present*, not current.
+      -- `auto_update` also upgrades it, which keeps prebuilt binaries from rotting
+      -- against system libraries (a stale lua-language-server once broke this way
+      -- when its pinned libbfd soname disappeared from binutils).
+      require('mason-tool-installer').setup {
+        ensure_installed = ensure_installed,
+        auto_update = true,
+      }
 
       -- Apply our per-server overrides on top of the defaults shipped by
       -- nvim-lspconfig. NOTE: mason-lspconfig v2 dropped support for the old
